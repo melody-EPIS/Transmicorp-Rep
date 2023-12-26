@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="page-container">
+        <div class="center-container">
+            <div class="view-order">
+                <h1>Detalles de la Factura {{ factura.id|stringformat:"011d" }}</h1>
+                <div class="order-details">
+                    <table class="order-table">
+                        <tr>
+                            <td ><div >Item</div> </td>
+                            <td> Detalle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orden de trabajo (Código ODT):</strong></td>
+                            <td>{{ factura.Orden_de_trabajo }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Id del cliente:</strong></td>
+                            <td>{{ factura.Id_cliente }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IGV:</strong></td>
+                            <td>{{ factura.IGV }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pago de Detracción:</strong></td>
+                            <td>{{ factura.Pago_de_detraccion }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fecha de Emisión:</strong></td>
+                            <td>{{ factura.Fecha_Emision }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Importe:</strong></td>
+                            <td>{{ factura.Importe }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Detracción:</strong></td>
+                            <td>{{ factura.Detraccion }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documento factura:</strong></td>
+                            <td>{{ factura.Documento_factura }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="{% static 'images/icon_details.png' %}" alt="Imagen" width="400" height="auto" > <!-- La imagen que se mostrará al lado derecho de la pantalla -->
+        </div>
+        <div class="button-container">
+            <a class="back-button" href="{% url 'lista_facturas' %}">Volver a la Lista</a>
+       </div>
+
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
+{% endblock %}

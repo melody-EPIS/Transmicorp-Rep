@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="page-container">
+      
+      <div class="view-order">
+        <h2>Detalles de la Notificacion</h2>
+        <div class="order-details">
+            <table class="order-table">
+                <tr>
+                  <td ><div >Item</div> </td>
+                  <td> Detalle</td></tr>
+                <tr>
+                
+                <tr>
+                  <td ><div >Item:</div> </td>
+                  <td> {{ notificacion.Inventario }}</td></tr>
+                <tr>
+                <tr>
+                  <td ><div >Evento:</div> </td>
+                  <td> {{ notificacion.Evento }}</td></tr>
+                <tr>
+                  <td><strong>Descripcion:</strong></td>
+                  <td>{{ notificacion.Descripcion }}</td>
+                </tr>
+              </table>
+        </div>
+      </div>
+      <div class="image-container">
+        <img src="{% static 'images/icon_details.png' %}" alt="Imagen" width="400" height="auto" > <!-- La imagen que se mostrará al lado derecho de la pantalla -->
+    </div>
+    <div class="button-container">
+        <a class="back-button" href="{% url 'lista_notificaciones' %}">Volver a la Lista</a>
+   </div>
+    </div>
+
+
+<!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
+{% endblock %}

@@ -1,0 +1,52 @@
+.main-wrapper {
+  max-width: 150% !important; /* Ajustar el ancho máximo del contenedor principal */
+  margin: 10px auto; /* Corregir la propiedad de margen */
+  padding: 20px;
+  background-color: #f0f0f0 !important;
+  border: 2px solid #e97154 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Establecer una altura mínima igual a la altura de la ventana del navegador para que el contenido no se desplace fuera de la pantalla */
+}
+
+.form-wrapper {
+  margin-top: 20px;
+  width: 100%; /* Establecer el ancho del formulario al 100% para ocupar todo el ancho disponible */
+  max-width: 400px; /* Establecer un ancho máximo para evitar que el formulario sea demasiado ancho */
+}
+
+.form-wrapper button {
+  background-color: #e97154 !important;
+  width: 50% !important;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-image: url('../images/icon_save.png') !important; /* Reemplaza 'ruta/de/la/imagen.png' con la ruta de tu imagen */
+  background-size: 20px; /* Ajusta el tamaño de la imagen según sea necesario */
+  background-position: 95% 50%; /* Posiciona la imagen a la derecha y centrada verticalmente */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.form-wrapper input[type="text"],
+.form-wrapper textarea,
+.form-wrapper select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.form-wrapper label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-wrapper .radio-label {
+  margin-right: 50px !important;
+}

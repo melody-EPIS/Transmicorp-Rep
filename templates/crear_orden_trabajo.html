@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/orden_trabajo_formulario.css' %}">
+    <div class="main-wrapper">
+        <h1>Orden de Trabajo</h1>
+        <div class="form-wrapper">
+           
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group col-50">
+                    <label for="{{ form.Cliente.id_for_label }}">RUC Cliente:</label>
+                    {{ form.Cliente }}
+                </div>
+                  
+                <div class="form-group col-50">
+                    <label for="{{ form.Id_Conductor.id_for_label }}">Nombre Conductor:</label>
+                    {{ form.Id_Conductor }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Origen.id_for_label }}">Origen:</label>
+                    {{ form.Origen }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Destino.id_for_label }}">Destino:</label>
+                    {{ form.Destino }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Detalles.id_for_label }}">Detalles:</label>
+                    {{ form.Detalles }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Id_Vehiculo.id_for_label }}">Placa del Vehículo:</label>
+                    {{ form.Id_Vehiculo }}
+
+                </div>
+        
+                <div class="form-group col-50">
+                    <label for="{{ form.Peso.id_for_label }}">Peso(Toneladas):</label>
+                    {{ form.Peso }}
+               
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Fecha_Emision.id_for_label }}">Fecha de Emisión:</label>
+                    {{ form.Fecha_Emision }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Monto_Cotizacion.id_for_label }}">Monto de Cotización:</label>
+                    {{ form.Monto_Cotizacion }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Estado.id_for_label }}">Estado:</label>
+                    <div class="cheackbox-container">
+                        {{ form.Estado }}
+                        <span> Marcar si la OT ha sido aceptada</span>
+                    </div>
+                    
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Tipo_orden_de_trabajo.id_for_label }}">Tipo de Orden de Trabajo:</label>
+                    <div class="checkbox-group-tipo col-20">{{ form.Tipo_orden_de_trabajo }}</div>
+                    
+                </div>
+                <div class="form-group col-100">
+                    <label for="{{ form.Descripcion.id_for_label }}">Descripción:</label>
+                    {{ form.Descripcion }}
+                </div>
+                <div class="center-button col-100">
+                    <button type="submit">Crear Orden de Trabajo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% endblock %}

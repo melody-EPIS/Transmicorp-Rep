@@ -1,0 +1,113 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th {
+    color: #fff; /* Cambiar el color del texto en el encabezado de la tabla a blanco */
+}
+
+.table td {
+    padding: 8px;
+    border-bottom: 1px solid rgb(17, 90, 110);
+    border-color: #076269;
+}
+
+.table th {
+    background-color: #076269; /* Agregar # para representar el color */
+}
+
+/* Estilos para los botones */
+a.btn-ver,
+a.btn-editar,
+a.btn-eliminar,
+a.btn-crear {
+    display: inline-block;
+    width: 100px; /* Establecer un ancho fijo para los botones */
+    padding: 6px 6px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center !important;
+}
+
+
+a.btn-editar {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+a.btn-eliminar {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Estilos al pasar el mouse por encima de los botones */
+a.btn-ver:hover,
+a.btn-editar:hover,
+a.btn-eliminar:hover,
+a.btn-crear:hover {
+    background-color: #e5e5e5;
+}
+
+a.btn-crear {
+    display: block; /* Cambiamos a "block" para ocupar todo el ancho disponible */
+    margin: 0 auto; /* Margen automático en los lados para centrar horizontalmente */
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #35696e !important;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    width: 30%  ; 
+}
+
+a.btn-crear:hover {
+    background-color: #076269 !important;
+}
+
+
+.container {
+  text-align: left;
+  margin-right: 0; /* Corregir el margen derecho */
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: flex-start; /* Alinear a la izquierda */
+  align-items: center; /* Centrar verticalmente */
+  margin-right: 10; /* Corregir el margen derecho */
+}
+
+.entries-control {
+  margin-right: 10; /* Corregir el margen derecho */
+  align-items: flex-start; /* Alinear a la izquierda */
+}
+
+/* Alinear horizontalmente los elementos dentro de la fila */
+.row {
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+}
+
+/* Establecer un ancho personalizado para el menú desplegable */
+#show-entries {
+  width: 200px; /* Ancho personalizado */
+  margin-right: 10px; /* Agregar un margen derecho para separar del campo de búsqueda */
+}
+
+/* Establecer un ancho personalizado para el campo de búsqueda */
+#busqueda {
+  flex: 2; /* Utilizar el espacio restante en la fila */
+  max-width: 300px; /* Ancho máximo para el campo de búsqueda */
+  margin-right: 10px; /* Agregar un margen derecho para separar del menú desplegable */
+  
+}

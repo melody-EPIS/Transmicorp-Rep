@@ -1,0 +1,71 @@
+
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+  
+  <div class="main-wrapper">
+      <h1>Registrar Unidad Vehicular</h1>
+      <div class="form-wrapper">
+          <form method="post" enctype="multipart/form-data" id="unidad-form">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Tipo_de_Vehiculo">Tipo Vehiculo:</label>
+                    {{ form.Tipo_de_Vehiculo }}
+                </div>
+                <div class="form-column" style=" margin-left: 20px; flex: 1;">
+                    <label for="id_Placa_Vehiculo" pattern="[A-Za-z0-9]{3}\d{3}" required>Placa del Vehiculo:</label>
+                    {{ form.Placa_Vehiculo }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Capacidad_Carga">Capacidad de Carga:</label>
+                    {{ form.Capacidad_Carga }}
+                </div>
+                <div class="form-column" style=" margin-left: 20px; flex: 1;">
+                    <label for="id_Estado_unidad">Estado de la Unidad:</label>
+                    {{ form.Estado_unidad }}
+                </div>
+            </div>
+           
+              
+            <div class="form-row" style="height: 100px;">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Observaciones">Observaciones:</label>
+                    <textarea name="Observaciones" id="id_Observaciones"
+                        style="width: 100%; height: 100%; word-wrap: break-word;" maxlength="200" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column" style="flex: 1; text-align: center;margin-top: 50px;">
+                    <button type="submit">Crear Unidad</button>
+                </div>
+            </div>
+
+          </form>
+      </div>
+  </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const placaInput = document.querySelector("#id_Placa_Vehiculo");
+
+        placaInput.addEventListener("input", function () {
+            const placaValue = placaInput.value.trim();
+            if (!/^[A-Za-z0-9]{3}\d{3}$/.test(placaValue)) {
+                placaInput.setCustomValidity("La placa debe tener tres caracteres alfanuméricos seguidos de tres dígitos.");
+            } else {
+                placaInput.setCustomValidity("");
+            }
+        });
+    });
+</script>
+
+   <!-- Enlace al archivo CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario.css' %}">
+
+{% endblock %}

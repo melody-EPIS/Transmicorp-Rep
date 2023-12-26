@@ -1,0 +1,373 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TRANSMICORP S.A.C.</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <!-- Meta -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+      <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+      <meta name="author" content="codedthemes" />
+      <!-- Favicon icon -->
+      <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{% static 'pages/waves/css/waves.min.css' %}" type="text/css" media="all">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+      <!-- waves.css -->
+      <link rel="stylesheet" href="{% static 'pages/waves/css/waves.min.css' %}" type="text/css" media="all">
+      <!-- themify icon -->
+      <link rel="stylesheet" type="text/css" href="{% static 'icon/themify-icons/themify-icons.css' %}">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" type="text/css" href="{% static 'icon/font-awesome/css/font-awesome.min.css' %}">
+      <!-- scrollbar.css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.css' %}">
+        <!-- am chart export.css -->
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style_green.css' %}">
+    {% block head %}
+    {% endblock %}
+      <!--<link rel="stylesheet" type="text/css" href="{% static 'css/formulario.css' %}">-->
+  </head>
+
+  <body>
+  <!-- Pre-loader start -->
+  <div class="theme-loader">
+    <div class="loader-track">
+        <div class="preloader-wrapper">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+          
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+          
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Pre-loader end -->
+  <div id="pcoded" class="pcoded">
+      <div class="pcoded-overlay-box bg-custom border-dark text-dark"></div>
+      <div class="pcoded-container navbar-wrapper border-dark text-dark">
+          <nav class="navbar header-navbar pcoded-header  bg-custom border-dark text-dark"> <!-- ESTILO. baCKGROUND  -->
+              <div class="navbar-wrapper bg-custom border-dark text-dark">
+                  <div class="navbar-logo bg-custom border-dark text-dark"> <!-- ESTILO. -->
+
+                      <a class="mobile-menu bg bg-custom waves-effect waves-light text-dark" id="mobile-collapse" href="#!">
+                          <i class="ti-menu"></i>
+                      </a>
+                      <div class="mobile-search waves-effect waves-light text-dark border-dark">
+                          <div class="header-search">
+                              <div class="main-search  text-dark morphsearch-search text-dark border-dark">
+                                  <div class="input-group">
+                                      <span class="input-group-addon search-close border-dark"><i class="ti-close"></i></span>
+                                      <input type="text" class="form-control text-dark border-dark" placeholder="Enter Keyword" >
+                                      <span class="input-group-addon search-btn border-dark text-dark"><i class="ti-search"></i></span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <a href="index.html">
+                          <img class="img-fluid" src="{% static 'images/logo_.png' %}" alt="Theme-Logo" width="70" height="auto" />
+                      </a>
+                      <a class="mobile-options waves-effect waves-light">
+                          <i class="ti-more"></i>
+                      </a>
+                  </div>
+                
+                  <div class="navbar-container container-fluid navbar-light bg bg-success ">
+                      <ul class="nav-left bg-custom">
+                          <li>
+                              <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                          </li>
+                          <li class="header-search ">
+                              <div class="main-search morphsearch-search ">
+                                  <div class="input-group">
+                                      <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                      <input type="text" class="form-control">
+                                      <span class="input-group-addon search-btn text-dark"><i class="ti-search"></i></span> <!-- COLOR SEARCH ARRIBA  -->
+                                  </div>
+                              </div>
+                          </li>
+                          <li>
+                              <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                  <i class="ti-fullscreen"></i>
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+
+          <div class="pcoded-main-container">
+              <div class="pcoded-wrapper " >
+                  <nav class="pcoded-navbar bg-custom">
+                      <div class="sidebar_toggle bg-custom-white"><a href="#"><i class="icon-close icons"></i></a></div>
+                      <div class="pcoded-inner-navbar main-menu">
+                          <div class="">
+                              <div class="main2-menu-header">
+                                  <img class="img-80 img-radius bg-custom2" src="{% if user.profile.image %}{{ user.profile.image.url }}{% else %}{% static 'images/avatar-blank.jpg' %}{% endif %}" alt="User-Profile-Image">
+                                  <div class="user-details">
+                                      <span id="more-details">{{ user.username }}<i class="fa fa-caret-down"></i></span>
+                                  </div>
+                              </div>
+        
+                              <div class="main-menu-content ">
+                                  <ul>
+                                      <li class="more-details">
+                                          <a href="{% url 'user_profile' %}"><i class="ti-user"></i>View Profile</a>
+                                          <a href="{% url 'settings' %}"><i class="ti-settings"></i>Settings</a>
+                                          <a href="{% url 'salir' %}"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="p-15 p-b-0">
+                              <form class="form-material">
+                                  <div class="form-group form-success">
+                                      <input type="text" name="footer-email" class="form-control" required="">
+                                      <span class="form-bar text-dark"></span>
+                                      <label class="float-label text-dark"><i class="fa fa-search m-r-10"></i>Search</label>
+                                      
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="pcoded-navigation-label text-green-custom" data-i18n="nav.category.navigation">Layout</div>
+                          <ul class="pcoded-item pcoded-left-item">
+                              <li class="active">
+                                  <a href="index.html" class="waves-effect waves-dark bg-custom2-dash" >  <!-- COLOR BOTON DASHBOARD -->
+                                      <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                      <span class="pcoded-mtext " data-i18n="nav.dash.main">Dashboard </span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+                
+                          <div class="pcoded-navigation-label text-green-custom h1" data-i58n="nav.category.forms">Módulos</div>
+                          <ul class="pcoded-item pcoded-left-item">
+                              <li>
+                                  <a href="{% url 'lista_ordenes_trabajo' %}"class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Orden de Trabajo</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="{% url 'lista_facturas' %}"class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Facturas</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+                              
+                              <li>
+                                  <a href="{% url 'lista_inventario' %}">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Inventario</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+        
+                              <li>
+                                  <a href="{% url 'lista_clientes' %}"class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Clientes</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+
+                              <li>
+                                  <a href="{% url 'lista_empleados' %}" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Empleados</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+
+                              <li>
+                                <a href="{% url 'lista_unidades' %}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Unidades</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                             </li>
+
+
+
+                              <li>
+                                  <a href="{% url 'lista_gasto' %}" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Gastos</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+
+                              <li>
+                                  <a href="{% url 'lista_proveedores' %}" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Proveedores</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li>
+
+                              <!--<li>
+                                  <a href="{% url 'lista_notificaciones' %}" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.form-components.main">Notificaciones</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                              </li> -->
+                              <li>
+                                <a href="{% url 'ver_informes_contables' %}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Informes Contables</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+
+
+                          </ul>    
+                  </nav>
+                  <div class="pcoded-content ">
+                      <!-- Page-header start -->
+                      <div class="page2-header">
+                          <div class="page-block"> <!-- COLOR SEGUNDO PANEL TRANSMICROP-->
+                              <div class="row align-items-center ">
+                                  <div class="col-md-8">
+                                      <div class="page-header-title ">
+                                          <h5 class="m-b-0">Dashboard</h5>
+                                          <p class="m-b-0">Bienvenido(a) Dashboard Transmicorp S.A.C.</p>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <ul class="breadcrumb-title ">
+                                          <li class="breadcrumb2-item">
+                                              <a href="index.html"> <i class="fa fa-home"></i> </a>
+                                          </li>
+                                          <li class="breadcrumb2-item"><a href="#!">Dashboard</a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Page-header end -->
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <!-- task, page, download counter  start -->
+                        
+                                            <!-- task, page, download counter  end -->
+    
+                                            <!--  sale analytics start -->
+                                            
+                                            {% block content %}
+                                            {% endblock %}
+
+                                            <!--  sale analytics end -->
+    
+                                            <!--  project and team member start -->
+                                            
+                                            <!--  project and team member end -->
+                                        </div>
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    
+    <!-- Required Jquery -->
+    <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui/jquery-ui.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'js/popper.js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap/js/bootstrap.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'pages/widget/excanvas.js' %}"></script>
+    <!-- waves js -->
+    <script src="{% static 'pages/waves/js/waves.min.js' %}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'js/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{% static 'js/modernizr/modernizr.js' %}"></script>
+    <!-- slimscroll js -->
+    <script type="text/javascript" src="{% static 'js/SmoothScroll.js' %}"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="{% static 'js/chart.js/Chart.js' %}"></script>
+    <!-- amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="{% static 'pages/widget/amchart/gauge.js' %}"></script>
+    <script src="{% static 'pages/widget/amchart/serial.js' %}"></script>
+    <script src="{% static 'pages/widget/amchart/light.js' %}"></script>
+    <script src="{% static 'pages/widget/amchart/pie.min.js' %}"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <!-- menu js -->
+    <script src="{% static 'js/pcoded.min.js' %}"></script>
+    <script src="{% static 'js/vertical-layout.min.js' %}"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="{% static 'pages/dashboard/custom-dashboard.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

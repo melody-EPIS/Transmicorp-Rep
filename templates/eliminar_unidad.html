@@ -1,0 +1,26 @@
+
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="delete-order">
+  <h2>Eliminar Vehiculo</h2>
+  <img src="{% static 'images/delete_img.png' %}" alt="Imagen">
+  <p>¿Estás seguro de que desea Eliminar la Unidad Vehicular?</p>
+  <p>Numero de ítem: {{ unidad.Placa_Vehiculo }}</p>
+  <!-- Mostrar otros campos del modelo aquí -->
+  <div class="button-container">
+      <form method="post">
+          {% csrf_token %}
+          <input class="delete-button" type="submit" value="Eliminar">
+      </form>
+      <a class="cancel-button" href="{% url 'lista_unidades' %}">Cancelar</a>
+  </div>
+  
+</div>
+
+
+
+<!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_eliminar.css' %}">
+{% endblock %}

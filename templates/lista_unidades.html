@@ -1,0 +1,118 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  <h2>Listado de Unidades Vehiculares</h2>
+  <div class="row">
+    <div class="col">
+      <label for="show-entries">Mostrar Registros:</label>
+    </div>
+      <div class="col">
+      <select id="show-entries" onchange="mostrarEntradas(this.value)" class="form-control">
+        <option value="all">All</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    <div class="col">
+      <input type="text" id="busqueda" placeholder="Buscar unidad.." onkeyup="buscar()" class="form-control">
+ 
+    </div>
+  </div>
+</div>
+
+ <table class="table" id="tabla-unidad">
+   <thead>
+     <tr>
+       
+       <th>Placa</th>
+       <th>Unidad</th>
+       <th>Capacidad de Carga</th>
+       <th>Estado de la Unidad</th>
+       <th>Observaciones</th>
+       <th colspan="3" style="text-align: center;">Acciones</th>
+     </tr>
+   </thead>
+   <tbody>
+     {% for uni in unidad %}
+       <tr>
+         
+        
+         <td>{{ uni.Placa_Vehiculo }}</td>
+         <td>{{ uni.Tipo_de_Vehiculo }}</td>
+         <td>{{ uni.Capacidad_Carga }}</td>
+         <td>{{ uni.Estado_unidad }}</td>
+         <td>{{ uni.Observaciones }}</td>
+
+         <td>
+           <a class="btn btn-primary" href="{% url 'ver_unidad' uni.pk %}">Ver detalles</a>
+         </td>
+         <td>
+           <a class="btn btn-warning" href="{% url 'editar_unidad' uni.pk %}">Editar</a>
+         </td>
+         <td>
+           <a class="btn btn-danger" href="{% url 'eliminar_unidad' uni.pk %}">Eliminar</a>
+         </td>
+       </tr>
+     {% endfor %}
+   </tbody>
+ </table>
+
+ <!-- Botón para crear una nueva UNIDAD -->
+
+
+<a class="btn-crear" href="{% url 'crear_unidad' %}">Crear Nueva Unidad</a>
+<script>
+  function buscar() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("busqueda");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tabla-unidad");
+    tr = table.getElementsByTagName("tr");
+
+    // Recorre todas las filas de la tabla y muestra solo las que coincidan con la consulta de búsqueda
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1]; // La segunda columna es la columna de nombre
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  function mostrarEntradas(numero) {
+    var table = document.getElementById("tabla-unidad");
+    var tr = table.getElementsByTagName("tr");
+
+    // Mostrar todas las filas
+    if (numero === "all") {
+      for (var i = 0; i < tr.length; i++) {
+        tr[i].style.display = "";
+      }
+    } else {
+      for (var i = 1; i < tr.length; i++) {
+        if (i <= parseInt(numero)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+
+
+ <!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_lista.css' %}">
+
+
+{% endblock %}
+

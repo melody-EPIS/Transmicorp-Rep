@@ -1,0 +1,155 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="main-wrapper">
+    <h1>Registrar Cliente</h1>
+    <div class="form-wrapper">
+        <form method="post" id="client-form">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Tipo_Ruc">Tipo RUC:</label>
+                    {{ form.Tipo_Ruc }}
+                </div>
+                <div class="form-column" style=" margin-left: 20px; flex: 1;">
+                    <label for="id_Ruc_Clientes">RUC Cliente:</label>
+                    {{ form.Ruc_Clientes }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Cliente_Nombre">Nombre Cliente:</label>
+                    {{ form.Cliente_Nombre }}
+                </div>
+                <div class="form-column" style=" margin-left: 20px; flex: 1;">
+                    <label for="id_Cliente_Apellido">Apellido Cliente:</label>
+                    {{ form.Cliente_Apellido }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Cliente_telefono">Teléfono:</label>
+                    {{ form.Cliente_telefono }}
+                </div>
+                <div class="form-column" style=" margin-left: 20px; flex: 1;">
+                    <label for="id_Cliente_email">Email:</label>
+                    {{ form.Cliente_email }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="direccion">Dirección:</label>
+                    {{ form.Cliente_direccion }}
+                </div>
+                <div class="form-column" style=" margin-left: 20px; flex: 1;">
+                    <label for="valor">Valoracion:</label>
+                    {{ form.Valoracion }}
+                </div>
+            </div>
+
+            <div class="form-row" style="height: 100px;">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Tipo_Mercaderia">Tipo de Mercadería:</label>
+                    <textarea name="Tipo_Mercaderia" id="id_Tipo_Mercaderia"
+                        style="width: 100%; height: 100%; word-wrap: break-word;" maxlength="200" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-column" style="flex: 1; text-align: center; margin-top: 50px;">
+                    <button type="submit">Crear Cliente</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tipoRucInput = document.querySelector("#id_Tipo_Ruc");
+        const rucClientesInput = document.querySelector("#id_Ruc_Clientes");
+        const nombreInput = document.querySelector("#id_Cliente_Nombre");
+        const apellidoInput = document.querySelector("#id_Cliente_Apellido");
+        const telefonoInput = document.querySelector("#id_Cliente_telefono");
+        const emailInput = document.querySelector("#id_Cliente_email");
+        const tipoMercaderiaInput = document.querySelector("#id_Tipo_Mercaderia");
+
+        tipoRucInput.addEventListener("change", function () {
+            const tipoRuc = tipoRucInput.value;
+
+            if (tipoRuc === "RUC10") {
+                rucClientesInput.pattern = "^10\\d{9}$";
+                rucClientesInput.title = "El RUC debe empezar con 10 y tener 11 dígitos numéricos.";
+                rucClientesInput.setCustomValidity("El RUC debe empezar con 10 y tener 11 dígitos numéricos.");
+            } else if (tipoRuc === "RUC20") {
+                rucClientesInput.pattern = "^20\\d{9}$";
+                rucClientesInput.title = "El RUC debe empezar con 20 y tener 11 dígitos numéricos.";
+                rucClientesInput.setCustomValidity("El RUC debe empezar con 20 y tener 11 dígitos numéricos.");
+            } else {
+                rucClientesInput.pattern = "";
+                rucClientesInput.title = "";
+                rucClientesInput.setCustomValidity("");
+            }
+        });
+
+        rucClientesInput.addEventListener("input", function () {
+            rucClientesInput.setCustomValidity(""); // Limpiar el mensaje de error personalizado
+
+            if (!rucClientesInput.checkValidity()) {
+                if (rucClientesInput.value.startsWith("10") && rucClientesInput.value.length !== 11) {
+                    rucClientesInput.setCustomValidity("El RUC debe tener 11 dígitos numéricos .");
+                } else if (rucClientesInput.value.startsWith("20") && rucClientesInput.value.length !== 11) {
+                    rucClientesInput.setCustomValidity("El RUC debe tener 11 dígitos numéricos .");
+                }
+            }
+        });
+
+
+        nombreInput.addEventListener("input", function () {
+            const nombreValue = nombreInput.value.trim();
+            if (!/^[A-Za-záéíóúÁÉÍÓÚ\s]+$/.test(nombreValue)) {
+                nombreInput.setCustomValidity("Ingrese solo letras y espacios en el nombre.");
+            } else {
+                nombreInput.setCustomValidity("");
+            }
+        });
+
+        apellidoInput.addEventListener("input", function () {
+            const apellidoValue = apellidoInput.value.trim();
+            if (!/^[A-Za-záéíóúÁÉÍÓÚ\s]+$/.test(apellidoValue)) {
+                apellidoInput.setCustomValidity("Ingrese solo letras y espacios en el apellido.");
+            } else {
+                apellidoInput.setCustomValidity("");
+            }
+        });
+
+        telefonoInput.addEventListener("input", function () {
+            const telefonoValue = telefonoInput.value.trim();
+            if (!/^9\d{8}$/.test(telefonoValue)) {
+                telefonoInput.setCustomValidity("El teléfono debe comenzar con 9 y contener exactamente 9 dígitos numéricos.");
+            } else {
+                telefonoInput.setCustomValidity("");
+            }
+        });
+
+        emailInput.addEventListener("input", function () {
+            const emailValue = emailInput.value.trim();
+            if (!/^[\w\.-]+@[\w\.-]+\.\w+$/.test(emailValue)) {
+                emailInput.setCustomValidity("Ingrese un correo electrónico válido.");
+            } else {
+                emailInput.setCustomValidity("");
+            }
+        });
+
+
+
+
+    });
+</script>
+
+<!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario.css' %}">
+
+{% endblock %}

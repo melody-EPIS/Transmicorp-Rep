@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+  
+  <div class="main-wrapper">
+      <h1>Editar ítem en Inventario</h1>
+      <div class="form-wrapper">
+          <form method="post">
+              {% csrf_token %}
+             
+              {{ form.as_p }}
+              <button type="submit">Guardar cambios</button>
+          </form>
+      </div>
+  </div>
+
+   <!-- Enlace al archivo CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'css/green_editar.css' %}">
+
+{% endblock %}

@@ -1,0 +1,59 @@
+
+
+.delete-order {
+    background-color: white !important;
+    text-align: center;
+    padding: 20px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    margin: 20px !important;
+    max-width: 500px; /* Personaliza el ancho máximo del contenido */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  }
+  
+  .delete-order h2 {
+    color: #333 !important;
+  } 
+  
+  .delete-order img {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 50% !important;
+    height: auto !important;
+    margin-top: 20px !important;
+  }
+  
+  .delete-order p {
+    color: #333  !important;
+    margin-top: 20px !important;
+  }
+  
+  .button-container {
+    margin-top: 20px !important;
+  }
+  
+  button-container {
+    margin-top: 20px !important;
+    text-align: center !important;
+  }
+  .delete-button {
+    background-color: #63af4c !important;
+    color: #fff !important;
+    padding: 10px 20px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    float: left !important; /* Esto posicionará el botón a la izquierda */
+    margin-right: 10px !important;
+  }
+  
+  .cancel-button {
+    background-color: #ff0000 !important;
+    color: #fff !important;
+    padding: 10px 20px !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    float: right !important; /* Esto posicionará el botón a la derecha */
+  }
+  

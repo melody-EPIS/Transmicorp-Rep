@@ -1,0 +1,27 @@
+#register-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+.card-title {
+    text-align: center;
+    color: #007bff; /* Cambia el color del título según tus preferencias */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+a{
+    text-decoration: none;
+}

@@ -1,0 +1,46 @@
+/* Estilos para el contenedor de la página */
+.page-container {
+    text-align: right;
+    font-family: Helvetica, sans-serif;
+}
+
+/* Estilos para el botón de retroceso */
+.back-button {
+    display: inline-block;
+    
+    margin-top: 20px;
+    text-decoration: none;
+    padding: 10px 200px;
+    background-color: red;
+    color: rgb(10, 1, 1);
+    border: none;
+    border-radius: 5px;
+}
+
+/* Estilos para la vista de orden */
+.view-order {
+    border: 1px solid rgb(25, 53, 6);
+    padding: 10px;
+    margin: 20px auto;
+    width: 100%;
+}
+
+
+/* Estilos para las columnas */
+.column {
+    display: flex;
+    border: 2px solid darkgreen;
+}
+
+/* Estilos para la columna izquierda */
+.column-left {
+    width: 30%;
+    background-color: lightgreen;
+    padding: 10px;
+}
+
+/* Estilos para la columna derecha */
+.column-right {
+    width: 50%;
+    padding: 10px;
+}

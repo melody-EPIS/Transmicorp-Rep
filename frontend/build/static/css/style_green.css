@@ -1,0 +1,246 @@
+/* Cambiar el color de fondo de la barra de navegación */
+.navbar-custom {
+  background: linear-gradient(to bottom, #4CAF50, #076269) !important;
+  /* Fallback para navegadores que no soportan degradados */
+  background: -webkit-linear-gradient(top, #4CAF50, #076269)!important;
+  background: -moz-linear-gradient(top, #4CAF50, #076269) !important;
+  background: -o-linear-gradient(top, #4CAF50, #076269)!important;
+
+}
+
+
+/* Cambiar el color del texto a negro */
+.navbar-custom[data-i8n="nav.category.forms"] {
+  color: black !important; /* Cambia "black" por el color de texto que desees */
+}
+
+/* Cambiar el color del texto a negro */
+.pcoded-mtext[data-i18n="nav.form-components.main"] {
+  color: black !important; /* Cambia "black" por el color de texto que desees */
+}
+
+
+
+/* Cambiar el color del texto a negro */
+.pcoded-mtext.navbar-custom[data-i18n="nav.dash.main"] {
+  color:ba !important; /* Cambia "black" por el color de texto que desees */
+}
+
+.bg-custom {
+  background:white !important;
+}
+
+
+.bg-custom a {
+  color: black !important; /* Cambia el color del texto de los enlaces a negro */
+}
+
+.header-notification a, .user-profile a {
+  color: black !important; /* Cambia el color del texto en los elementos con las clases header-notification y user-profile a negro */
+}
+
+/* Estilos para el componente de búsqueda */
+.navbar-dark .navbar-nav .nav-link {
+  color: black !important; /* Cambia el color del texto del enlace en la barra de navegación a negro */
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-color: black !important; /* Cambia el color del icono del botón de la barra de navegación a negro */
+}
+
+/* Estilos para el componente de búsqueda */
+.navbar-dark .navbar-form .form-control {
+  color: black !important; /* Cambia el color del texto en el componente de búsqueda a negro */
+}
+
+.navbar-dark .navbar-form .form-control:focus {
+  border-color: black !important; /* Cambia el color del borde cuando el componente de búsqueda está enfocado a negro */
+}
+
+
+
+.form-group.form-success input.form-control {
+  color: black !important; /* Cambia el color del texto del input a negro */
+  border-color: black !important; /* Cambia el color del borde del input a negro */
+}
+
+.form-group.form-success .form-bar {
+  background-color: black !important; /* Cambia el color del fondo de la barra del input a negro */
+}
+
+.form-group.form-success label.float-label {
+  color: black !important; /* Cambia el color del texto de la etiqueta flotante a negro */
+}
+
+.form-group.form-success label.float-label i {
+  color: black !important; /* Cambia el color del icono dentro de la etiqueta flotante a negro */
+}
+
+
+
+.bg-custom-white {
+  background: white !important;
+}
+.bg-custom2-dash {
+  background: #67a4af !important; /*COLOR BOTON Dashboard listado izquierdo*/
+}
+
+.bg-custom-prof {
+  background: red !important;
+}
+.bg-custom2 {
+  background: #076269 !important;
+  background-image: none !important; /* Deshabilitar cualquier imagen de fondo */
+  background-size: auto !important; /* Deshabilitar el escalado de la imagen de fondo */
+  background-repeat: repeat !important; /* Deshabilitar la repetición de la imagen de fondo */
+  background-attachment: scroll !important; /* Deshabilitar la fijación de la imagen de fondo */
+  background-position: 0 0 !important; /* Establecer la posición de la imagen de fondo a la esquina superior izquierda */
+
+  /* Propiedades adicionales para resetear y desactivar efectos */
+  box-shadow: none !important; /* Deshabilitar sombra */
+  border: none !important; /* Deshabilitar borde */
+  filter: none !important; /* Deshabilitar filtros */
+  transition: none !important; /* Deshabilitar transiciones */
+  
+ 
+}
+
+.bg-custom3 {
+background: #003322 !important;
+background-image: none !important; /* Deshabilitar cualquier imagen de fondo */
+background-size: auto !important; /* Deshabilitar el escalado de la imagen de fondo */
+background-repeat: repeat !important; /* Deshabilitar la repetición de la imagen de fondo */
+background-attachment: scroll !important; /* Deshabilitar la fijación de la imagen de fondo */
+background-position: 0 0 !important; /* Establecer la posición de la imagen de fondo a la esquina superior izquierda */
+
+/* Propiedades adicionales para resetear y desactivar efectos */
+box-shadow: none !important; /* Deshabilitar sombra */
+border: none !important; /* Deshabilitar borde */
+filter: none !important; /* Deshabilitar filtros */
+transition: none !important; /* Deshabilitar transiciones */
+
+
+}
+.text-green-custom {
+  color: #097179 !important; 
+  
+}
+
+
+
+
+/* Personalizar el page-header */
+.page2-header {
+font-family: Arial, Helvetica, sans-serif; 
+background-color: #076269; /* Color de fondo */
+color: #fff; /* Color del texto */
+padding: 20px; /* Relleno */
+margin-bottom: 10px; /* Margen inferior */
+font-size: 36px; /* Tamaño de fuente */
+border-bottom: none; /* Eliminar el borde inferior */
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+height:  60%; /* Altura personalizada */
+line-height: 2.22; /* Altura de línea */
+text-decoration: none; /* Eliminar la decoración del texto */
+letter-spacing: 2px; /* Espaciado entre letras */
+text-shadow: none; /* Eliminar la sombra del texto */
+
+border: 5px solid #67a4af; /* Borde de color verde claro */
+
+}
+
+.page2-header .breadcrumb-title {
+text-align: right; /* Alinear a la derecha */
+
+}
+
+.page2-header .page-header-title h5 {
+font-size: 16px; /* Tamaño de fuente más pequeño */
+font-weight: bold;
+}
+
+.page2-header .page-header-title p {
+font-size: 12x; /* Tamaño de fuente más pequeño */
+}
+.page2-header .breadcrumb-title .breadcrumb-item a {
+color: #fff; /* Color del enlace */
+}
+
+.page2-header .breadcrumb-title .breadcrumb2-item:first-child a {
+font-size: 20px; /* Ajustar el tamaño del icono de la casita o home */
+}
+
+
+.breadcrumb-title {
+display: flex;
+justify-content: flex-end;
+list-style: none;
+padding: 0;
+}
+
+.breadcrumb2-item {
+margin: 0;
+content: "›";
+color: #fff; /* Color del enlace */
+}
+
+.breadcrumb2-item a {
+color: #fff; /* Color del enlace */
+
+}
+
+.breadcrumb2-item:last-child {
+font-weight: bold; /* Aplicar negrita al último elemento */
+}
+
+.breadcrumb2-item:not(:last-child)::after {
+content: "›"; /* Define el símbolo que separa los elementos, excepto el último */
+margin: 0 5px; /* Añade un margen a cada lado del separador */
+color: #fff; /* Color del enlace */; /* Color del separador */
+}
+
+.breadcrumb2-item:last-child::after {
+content: none; /* Elimina el separador del último elemento */
+}
+
+
+
+
+
+
+/*Personzalizar main-menu-header*/
+
+.main2-menu-header {
+background-color: #076269; /* Color de fondo del menú */
+color: #fff; /* Color del texto del menú */
+padding: 10px 20px; /* Relleno interno del menú */
+font-size: 18px; /* Tamaño de fuente del menú */
+display: flex; /* Utilizar flexbox para alinear elementos */
+align-items: center; /* Centrar verticalmente los elementos */
+border: 5px solid #67a4af; /* Borde de color verde claro */
+border-right: none; 
+}
+
+.main2-menu-header img {
+width: 80px; /* Ancho de la imagen */
+height: 80px; /* Altura de la imagen */
+border-radius: 50%; /* Establecer bordes redondeados para la imagen */
+margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.main2-menu-header .user-details {
+display: center; /* Utilizar flexbox para alinear elementos */
+align-items: center; /* Centrar verticalmente los elementos */
+}
+
+.main2-menu-header #more-details {
+cursor: pointer; /* Cambiar el cursor al pasar sobre el texto */
+display: flex; /* Utilizar flexbox para alinear elementos */
+align-items: center; /* Centrar verticalmente los elementos */
+justify-content: center; /* Centrar horizontalmente el texto */
+}
+
+.main2-menu-header #more-details i {
+margin-left: 5px; /* Espacio entre el nombre de usuario y el icono */
+}
+

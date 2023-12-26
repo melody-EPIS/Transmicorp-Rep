@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
+    <div class="page-container">
+        
+        <div class="view-order">
+            <h2>Detalles del Item en el Inventario</h2>
+            <div class="order-details">
+                <table class="order-table">
+                    <tr>
+                        <td><strong>Id inventario:</strong></td>
+                        <td>{{ inventario.Id_Inventario }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nombre ítem:</strong></td>
+                        <td>{{ inventario.NombreItem }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fecha de ingreso:</strong></td>
+                        <td>{{ inventario.FechaIngreso }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cantidad:</strong></td>
+                        <td>{{ inventario.Cantidad }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Descripción:</strong></td>
+                        <td>{{ inventario.Descripcion }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tiempo de Vida:</strong></td>
+                        <td>{{ inventario.TiempoVida }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ambiente:</strong></td>
+                        <td>{{ inventario.Ambiente }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado:</strong></td>
+                        <td>{{ inventario.Estado }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="image-container">
+                <img src="{% static 'images/icon_details.png' %}" alt="Imagen" width="400" height="auto" > <!-- La imagen que se mostrará al lado derecho de la pantalla -->
+            </div>
+            <div class="button-container">
+                <a class="back-button" href="{% url 'lista_inventario' %}">Volver a la Lista</a>
+           </div>
+        </div>
+    </div>
+{% endblock %}

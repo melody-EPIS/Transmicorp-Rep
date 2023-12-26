@@ -1,0 +1,64 @@
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+/* Estilo para la primera fila con fondo de color verde */
+.order-table tr:first-child {
+  background-color: #097179 !important; /* Fondo de color verde */
+  color: #ffffff !important; /* Letras en color blanco */
+}
+
+  .order-table td {
+    border: 1px solid #072a2c;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .view-order {
+    text-align: center;
+  }
+  
+  .center-button {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .button-container {
+    text-align: right; /* Alinea el botón  */
+    margin-top: 20px;
+  }
+  .back-button {
+    background-color: #e97154 !important;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  /* Estilo para el botón al pasar el mouse sobre él */
+.back-button:hover {
+  background-color: #a63b1e !important; /* Cambiar a un color más oscuro */
+  color: #ccc; /* Cambiar el color del texto a gris */
+}
+
+  
+  /* Agregar estilo para el rótulo "Detalles" */
+/* Estilo para el rótulo "Detalles" dentro de la tabla */
+.order-details table caption {
+  background-color: #008000 !important; /* Fondo de color verde */
+  color: #ffffff; /* Letras en color blanco */
+  padding: 10px; /* Añadir espacio alrededor del texto */
+  caption-side: top; /* Posicionar el rótulo arriba de la tabla */
+}
+
+/* Estilo para la imagen al lado derecho de la pantalla */
+.image-container {
+  position: fixed; /* Establecer posición fija para la imagen */
+  width: 100px !important;
+  max-width: 200px !important;
+  height: auto !important;
+  top: 50%; /* Ajustar la posición vertical de la imagen */
+  right: 40%; /* Ajustar la posición horizontal de la imagen */
+  transform: translateY(-50%); /* Centrar verticalmente la imagen */
+}
+

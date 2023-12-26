@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
+  <div class="page-container">
+     
+      <div class="view-order">
+        <h2>Detalles del Proveedor</h2>
+        <div class="order-details">
+          <table class="order-table">
+            <tr>
+                <td><strong>Nombre:</strong></td>
+                <td>{{ proveedor.Nombre }}</td>  
+            </tr>
+            <tr>
+                <td><strong>Direccion:</strong></td>
+                <td>{{ proveedor.Direccion }}</td>
+            </tr>
+            <tr>
+              <td><strong>Correo:</strong></td>
+              <td>{{ proveedor.Correo }}</td>
+            </tr>
+            <tr>
+              <td><strong>Telefono:</strong></td>
+              <td>{{ proveedor.Telefono }}</td>
+            </tr>
+            <tr>
+              <td><strong>Valoracion:</strong></td>
+              <td>{{ proveedor.Valoracion }}</td>
+            </tr>
+            <tr>
+              <td><strong>Tipo de Producto:</strong></td>
+              <td>{{ proveedor.TipoProducto }}</td>
+            </tr>
+            <tr>
+              <td><strong>Documentacion Legal:</strong></td>
+              <td>{{ proveedor.nombre_archivo }}</td>
+            </tr>
+            <!-- Mostrar otros campos del modelo aquí -->
+        </table>
+      </div>
+      <div class="image-container">
+        <img src="{% static 'images/icon_details.png' %}" alt="Imagen" width="400" height="auto" > <!-- La imagen que se mostrará al lado derecho de la pantalla -->
+    </div>
+    <div class="button-container">
+        <a class="back-button" href="{% url 'lista_proveedores' %}">Volver a la Lista</a>
+   </div>
+    </div>
+
+
+<!-- Enlace al archivo CSS -->
+{% endblock %}

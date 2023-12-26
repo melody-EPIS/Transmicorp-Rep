@@ -1,0 +1,70 @@
+main-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0 !important;
+  border: 2px solid #e97154 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+.main-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0 !important;
+  border: 2px solid #e97154 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  /* Centrar verticalmente el formulario */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Establecer una altura mínima igual a la altura de la ventana del navegador para que el contenido no se desplace fuera de la pantalla */
+}
+
+/* Estilos para el formulario */
+.form-wrapper {
+  margin-top: 20px;
+  width: 100%; /* Establecer el ancho del formulario */
+  max-width: 400px; /* Establecer un ancho máximo para evitar que el formulario sea demasiado ancho */
+}
+
+
+/* Estilos para el formulario */
+.form-wrapper {
+  margin-top: 20px;
+}
+
+/* Estilos para los campos del formulario */
+.form-wrapper input[type="text"],
+.form-wrapper textarea,
+.form-wrapper select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos para las etiquetas (labels) */
+.form-wrapper label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Estilos para el botón */
+.form-wrapper button {
+  background-color: #e97154 !important;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para los radio buttons */
+.form-wrapper .radio-label {
+  margin-right: 10px;
+}
+

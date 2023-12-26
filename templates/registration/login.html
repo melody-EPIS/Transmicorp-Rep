@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> TRANSMICORP S.A.C.</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">   
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <img class="wave" src="{% static 'images/wave.png' %}">
+	<div class="container">
+		<div class="img">
+			<img class="logo" src="{% static 'images/logo_.png' %}">
+		</div>
+		<div class="login-content">
+			<form method="post">
+                {% csrf_token %}
+				<h2 class="title">Bienvenido</h2>
+                <h6>Ingrese su usuario y contraseña</h6>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+                    
+                    {{ form.username }}
+           		   </div>
+           		</div>
+           		<div class="input-div pass" name="password">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+                    
+                    {{ form.password }}
+            	   </div>
+                   
+            	</div>
+				
+            	<a href="#">¿Olvidaste tu contraseña?</a> </br>
+				<a href="{% url 'crear_cuenta' %}">¿No tienes cuenta? Registrate</a>
+            	<button type="submit" class="btn btn-primary px-4 float-end mt-4">login</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+
+
+
+     
+</body>
+</html>

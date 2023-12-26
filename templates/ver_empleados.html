@@ -1,0 +1,107 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="page-container">
+        <div class="view-order">
+            <h1>Detalles del empleado/a {{ empleados.Nombre }}</h1>
+            <div class="table-container">
+                <table class="order-table">
+                    <tr>
+                        <td ><div >Item</div> </td>
+                        <td> Detalle</td></tr>
+                    <tr>
+                    <tr>
+                        <td><strong>Nombre:</strong></td>
+                        <td>{{ empleados.Nombre }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DNI:</strong></td>
+                        <td>{{ empleados.DNI }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Correo:</strong></td>
+                        <td>{{ empleados.Correo }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo de Licencia:</strong></td>
+                        <td>
+                            {% if empleados.Licencia == '1' %}
+                                A-I
+                            {% elif empleados.Licencia == '2' %}
+                                A-IIa
+                            {% elif empleados.Licencia == '3' %}
+                                A-IIb
+                            {% elif empleados.Licencia == '4' %}
+                                A-IIIa
+                            {% elif empleados.Licencia == '5' %}
+                                A-IIIb
+                            {% elif empleados.Licencia == '6' %}
+                                A-IIIc
+                            {% elif empleados.Licencia == '7' %}
+                                B-I
+                            {% elif empleados.Licencia == '8' %}
+                                B-IIa
+                            {% elif empleados.Licencia == '9' %}
+                                B-IIb
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Apellidos:</strong></td>
+                        <td>{{ empleados.Apellido }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teléfono:</strong></td>
+                        <td>{{ empleados.Telefono }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rendimiento:</strong></td>
+                        <td>
+                            {% if empleados.Rendimiento == '1' %}
+                                Excelente
+                            {% elif empleados.Rendimiento == '2' %}
+                                Bueno
+                            {% elif empleados.Rendimiento == '3' %}
+                                Regular
+                            {% elif empleados.Rendimiento == '4' %}
+                                Necesita Mejorar
+                            {% elif empleados.Rendimiento == '5' %}
+                                Deficiente
+                            {% else %}
+                                {{ empleados.Rendimiento }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado de Licencia:</strong></td>
+                        <td>
+                            {% if empleados.Estado_Licencia == '1' %}
+                                Vigente
+                            {% elif empleados.Estado_Licencia == '2' %}
+                                Suspendida
+                            {% elif empleados.Estado_Licencia == '3' %}
+                                Vencida
+                            {% elif empleados.Estado_Licencia == '4' %}
+                                Invalida
+                            {% else %}
+                                {{ empleados.Estado_Licencia }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observaciones:</strong></td>
+                        <td>{{ empleados.Observaciones }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="image-container">
+                <img src="{% static 'images/icon_details.png' %}" alt="Imagen" width="400" height="auto">
+            </div>
+            <div class="button-container">
+                <a class="back-button" href="{% url 'lista_empleados' %}">Volver a la Lista</a>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
+{% endblock %}

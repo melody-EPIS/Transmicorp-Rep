@@ -1,0 +1,124 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="main-wrapper">
+    <h1>Crear empleado</h1>
+    <div class="form-wrapper">
+        <form method="post" id="example-form">
+            {% csrf_token %}
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div style="width: calc(50% - 10px); margin-bottom: 20px; box-sizing: border-box;">
+                    <div class="form-field">
+                        <label for="id_nombre">Nombre:</label>
+                        {{ form.Nombre }}
+                    </div>
+                    <div class="form-field">
+                        <label for="id_dni">DNI:</label>
+                        {{ form.DNI }}
+                    </div>
+                    <div class="form-field">
+                        <label for="id_correo">Correo:</label>
+                        {{ form.Correo }}
+                       
+                    </div>
+                    <div class="form-field">
+                        <label for="id_licencia">Licencia:</label>
+                        {{ form.Licencia }}
+                    </div>
+                </div>
+                <div style="width: calc(50% - 10px); margin-bottom: 20px; box-sizing: border-box;">
+                    <div class="form-field">
+                        <label for="id_apellido">Apellidos:</label>
+                        {{ form.Apellido }}
+                        
+                    </div>
+                    <div class="form-field">
+                        <label for="id_telefono">Teléfono:</label>
+                        {{ form.Telefono }}
+                       
+                    </div>
+                    <div class="form-field">
+                        <label for="id_rendimiento">Rendimiento:</label>
+                        {{ form.Rendimiento }}
+                    </div>
+                    <div class="form-field">
+                        <label for="id_estado_licencia">Estado de Licencia:</label>
+                        {{ form.Estado_Licencia }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="id_observaciones">Observaciones:</label>
+                <textarea name="{{ form.Observaciones.name }}" id="{{ form.Observaciones.id_for_label }}" rows="4" cols="50">{{ form.Observaciones.value }}</textarea>
+                
+            </div>
+            <div style="text-align: center;">
+                <button type="submit">Crear Empleado </button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dniInput = document.querySelector("#id_DNI");
+        const telefonoInput = document.querySelector("#id_Telefono");
+        const correoInput = document.querySelector("#id_Correo");
+        const nombreInput = document.querySelector("#id_Nombre");
+        const apellidoInput = document.querySelector("#id_Apellido");
+
+        dniInput.addEventListener("input", function () {
+            const dniValue = dniInput.value.trim();
+            if (!/^\d{8}$/.test(dniValue)) {
+                dniInput.setCustomValidity("El DNI debe contener exactamente 8 dígitos numéricos.");
+            } else {
+                dniInput.setCustomValidity("");
+            }
+        });
+
+        telefonoInput.addEventListener("input", function () {
+            const telefonoValue = telefonoInput.value.trim();
+            if (!/^9\d{8}$/.test(telefonoValue)) {
+                telefonoInput.setCustomValidity("El teléfono debe comenzar con 9 y contener exactamente 9 dígitos numéricos.");
+            } else {
+                telefonoInput.setCustomValidity("");
+            }
+        });
+
+        correoInput.addEventListener("input", function () {
+            const correoValue = correoInput.value.trim();
+            if (!/^[\w\.-]+@[\w\.-]+\.\w+$/.test(correoValue)) {
+                correoInput.setCustomValidity("Ingrese un correo electrónico válido.");
+            } else {
+                correoInput.setCustomValidity("");
+            }
+        });
+
+        nombreInput.addEventListener("input", function () {
+            const nombreValue = nombreInput.value.trim();
+            if (!/^[A-Za-z\s]+$/.test(nombreValue)) {
+                nombreInput.setCustomValidity("Ingrese solo letras y espacios en el nombre.");
+            } else {
+                nombreInput.setCustomValidity("");
+            }
+        });
+
+        apellidoInput.addEventListener("input", function () {
+            const apellidoValue = apellidoInput.value.trim();
+            if (!/^[A-Za-z\s]+$/.test(apellidoValue)) {
+                apellidoInput.setCustomValidity("Ingrese solo letras y espacios en el apellido.");
+            } else {
+                apellidoInput.setCustomValidity("");
+            }
+        });
+    });
+</script>
+
+<!-- Enlace al archivo CSS -->
+<!--<link rel="stylesheet" type="text/css" href="{% static 'css/formulario.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="/static/css/green_formulario.css">
+
+
+{% endblock %}

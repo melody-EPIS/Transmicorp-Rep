@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="main-wrapper">
+    <h1>Operaciones Contables</h1>
+    <div class="form-wrapper">
+        <form method="post" action="{% url 'ver_informes_contables' %}" onsubmit="return validarFechas()">
+            {% csrf_token %}
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div style="width: calc(50% - 10px); margin-bottom: 20px; box-sizing: border-box;">
+                    <div class="form-field">
+                        <select name="tipoConsulta">
+                            <option value="consultarTotal">Todos</option>
+                            <option value="consultarGastos">Gastos</option>
+                            <option value="consultarIngresos">Ingresos</option>
+                          </select>
+                    </div>
+                    <div class="form-field">
+                        <p>Fecha Inicio:</p>
+                        <input type="date" name="fechaInicio">
+                    </div>
+                    <div class="form-field">
+                        <p>Fecha Fin:</p>
+                        <input type="date" name="fechaFin">
+                       
+                    </div>
+                </div>
+     
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit">Consultar</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario.css' %}">
+
+
+<script>
+    function validarFechas() {
+        var fechaInicio = document.getElementsByName("fechaInicio")[0].value;
+        var fechaFin = document.getElementsByName("fechaFin")[0].value;
+
+
+        if (fechaInicio === "" || fechaFin === "") {
+            alert("Por favor, ingrese ambas fechas");
+            return false;
+        }
+
+
+        if (fechaInicio > fechaFin) {
+            alert("La fecha de inicio no puede ser posterior a la fecha de fin");
+            return false;
+        }
+
+
+        return true;
+    }
+</script>
+{% endblock %}

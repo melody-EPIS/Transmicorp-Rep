@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+	<title>TRANSMICORP</title>
+</head>
+<body>
+
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-doughnut-chart'></i>
+			<span class="text">TRANSMICORP SA</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="{% url 'lista_ordenes_trabajo' %}">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Orden de trabajo</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Unidades</span>
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'lista_facturas' %}">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Facturas</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Empleados</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Proveedor</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="{% url 'inventario' %}">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Inventario</span>
+				</a>
+			</li>
+
+
+			<li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Notificaciones</span>
+				</a>
+			</li>
+
+			<li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Gastos</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+	
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<form action="#">
+			</form>
+
+			<a href="#" class="profile">
+				<img src="{% static 'image/User.png' %}">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					{% block content %}
+					{% endblock %}
+					
+				</div>
+			</div>
+		</main>
+
+	
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="{% static 'js/script.js' %}"></script>
+	
+</body>
+</html>

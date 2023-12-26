@@ -1,0 +1,116 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  <h2>Listado de Empleados</h2>
+  <div class="row">
+    <div class="col">
+      <label for="show-entries">Mostrar Registros:</label>
+    </div>
+      <div class="col">
+      <select id="show-entries" onchange="mostrarEntradas(this.value)" class="form-control">
+        <option value="all">All</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    <div class="col">
+      <input type="text" id="busqueda" placeholder="Buscar por nombre de empleado..." onkeyup="buscar()" class="form-control">
+ 
+    </div>
+  </div>
+</div>
+
+<table class="table" id="tabla-empleados">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>DNI</th>
+      <th>Teléfono</th>
+      <th>Estado de Licencia</th>
+      <th colspan="3" style="text-align: center;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for empleados in empleados %}
+      <tr>
+        <td>{{ empleados.Nombre }}</td>
+        <td>{{ empleados.DNI }}</td>
+        <td>{{ empleados.Telefono }}</td>
+        <td>
+          {% if empleados.Estado_Licencia == '1' %}
+            Vigente
+          {% elif empleados.Estado_Licencia == '2' %}
+            Suspendida
+          {% elif empleados.Estado_Licencia == '3' %}
+            Vencida
+          {% elif empleados.Estado_Licencia == '4' %}
+            Invalida
+          {% else %}
+            {{ empleados.Estado_Licencia }}
+          {% endif %}
+        </td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'ver_empleados' empleados.pk %}">Ver detalles</a>
+        </td>
+        <td>
+          <a class="btn btn-warning" href="{% url 'editar_empleados' empleados.pk %}">Editar</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" href="{% url 'eliminar_empleados' empleados.pk %}">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<!-- Botón para crear nuevo empleado -->
+<a class="btn-crear" href="{% url 'crear_empleados' %}">Crear Nuevo Empleado</a>
+<script>
+  function buscar() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("busqueda");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tabla-empleados");
+    tr = table.getElementsByTagName("tr");
+
+    // Recorre todas las filas de la tabla y muestra solo las que coincidan con la consulta de búsqueda
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0]; // La segunda columna es la columna de nombre
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  function mostrarEntradas(numero) {
+    var table = document.getElementById("tabla-empleados");
+    var tr = table.getElementsByTagName("tr");
+
+    // Mostrar todas las filas
+    if (numero === "all") {
+      for (var i = 0; i < tr.length; i++) {
+        tr[i].style.display = "";
+      }
+    } else {
+      for (var i = 1; i < tr.length; i++) {
+        if (i <= parseInt(numero)) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_lista.css' %}">
+{% endblock %}

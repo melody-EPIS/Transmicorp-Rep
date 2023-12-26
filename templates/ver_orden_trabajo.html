@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+   <div class="page-container">
+    <div class="center-container"></div>
+     <div class="view-order" id="print-content">
+       <h1>Detalles de la Orden de Trabajo ODT-{{ orden_trabajo.id }}</h1>
+       <div class="order-details">
+
+        <table class="order-table">
+          <tr>
+            <td ><div >Item</div> </td>
+            <td> Detalle</td>
+          </tr>
+          <tr>
+            <td><strong>Nombre Completo del Cliente:</strong></td>
+            <td>{{ orden_trabajo.Cliente }}</td>
+          </tr>
+          <tr>
+            <td><strong>Nombre del Conductor:</strong></td>
+            <td>{{ orden_trabajo.Id_Conductor }}</td>
+          </tr>
+          <tr>
+            <td><strong>Origen:</strong></td>
+            <td>{{ orden_trabajo.Origen }}</td>
+          </tr>
+          <tr>
+            <td><strong>Fecha de Emision:</strong></td>
+            <td>{{ orden_trabajo.Fecha_Emision}}</td>
+          </tr>
+          <tr>
+            <td><strong>Tipo de Orden de trabajo</strong></td>
+            <td>{{ orden_trabajo.Tipo_orden_de_trabajo }}</td>
+          </tr>
+          <tr>
+            <td><strong>Tipo de Mercadería:</strong></td>
+            <td>{{ orden_trabajo.Cliente.Tipo_Mercaderia }}</td>
+          </tr>
+          <tr>
+            <td><strong>Detalles:</strong></td>
+            <td>{{ orden_trabajo.Detalles }}</td>
+          </tr>
+          <tr>
+            <td><strong>Descripcion:</strong></td>
+            <td>{{ orden_trabajo.Descripcion }}</td>
+          </tr>
+          <tr>
+            <td><strong>Placa del Vehiculo:</strong></td>
+            <td>{{ orden_trabajo.Id_Vehiculo }}</td>
+          </tr>
+          <tr>
+            <td><strong>Monto de Cotizacion:</strong></td>
+            <td>{{ orden_trabajo.Monto_Cotizacion }} soles</td>
+          </tr>
+          <tr>
+            <td><strong>Destino:</strong></td>
+            <td>{{ orden_trabajo.Destino }}</td>
+          </tr>
+          <tr>
+            <td><strong>Peso(Toneladas):</strong></td>
+            <td>{{ orden_trabajo.Peso }}</td>
+          </tr>
+          <tr>
+            <td><strong>Estado:</strong></td>
+            <td>{{ orden_trabajo.Estado }}</td>
+          </tr>
+        </table>
+       </div>
+      </div>
+      <div class="image-container">
+         <!-- <img src="{% static 'images/icon_details.png' %}" alt="Imagen" width="400" height="auto" >  La imagen que se mostrará al lado derecho de la pantalla -->
+      </div>
+      <div class="button-container">
+          <a class="back-button" href="{% url 'lista_ordenes_trabajo' %}">Volver a la Lista</a>
+          <button class="imprimir-button" onclick="imprimirDetalles()">Imprimir</button>
+      </div>
+     </div>  
+   </div>
+
+   <!-- Enlace al archivo CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
+
+   <script>
+    var rutaCSS = "{% static 'css/ver_orden.css' %}";
+
+    function imprimirDetalles() {
+        var ventanaImpresion = window.open('', '', 'width=600,height=600');
+        ventanaImpresion.document.write('<html><head><title>Detalles de la Orden de Trabajo</title>');
+        ventanaImpresion.document.write('<link rel="stylesheet" href="' + rutaCSS + '" type="text/css" media="print">');
+        ventanaImpresion.document.write('</head><body>');
+        ventanaImpresion.document.write('<div class="view-order" id="print-content">');
+        ventanaImpresion.document.write(document.getElementById('print-content').innerHTML);
+        ventanaImpresion.document.write('</div>');
+        ventanaImpresion.document.write('</body></html>');
+        ventanaImpresion.document.close();
+        ventanaImpresion.print();
+    }
+
+
+   </script>
+{% endblock %}

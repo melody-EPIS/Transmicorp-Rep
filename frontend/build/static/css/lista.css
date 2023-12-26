@@ -1,0 +1,60 @@
+.table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+ }
+  .table th,
+ .table td {
+   padding: 8px;
+   border-bottom: 1px solid rgb(17, 90, 110);
+   border-color: #448aff;
+ }
+  .table th {
+   background-color: #448aff;
+ }
+  /* Estilos para los botones */
+ a.btn-ver,
+ a.btn-editar,
+ a.btn-eliminar {
+   display: inline-block;
+   padding: 6px 10px;
+   margin-right: 5px;
+   border: 1px solid #ccc;
+   background-color: #f2f2f2;
+   color: #333;
+   text-decoration: none;
+   border-radius: 4px;
+ }
+  a.btn-editar {
+   background-color: #ffc107;
+   color: #fff;
+ }
+  a.btn-eliminar {
+   background-color: #dc3545;
+   color: #fff;
+ }
+  /* Estilos al pasar el mouse por encima de los botones */
+ a.btn-ver:hover,
+ a.btn-editar:hover,
+ a.btn-eliminar:hover {
+   background-color: #e5e5e5;
+ }
+
+
+
+
+
+
+ a.btn-crear {
+   display: block; /* Cambiamos a "block" para ocupar todo el ancho disponible */
+   margin: 0 auto; /* Margen automático en los lados para centrar horizontalmente */
+   padding: 10px 20px;
+   margin-top: 10px;
+   background-color: #007bff;
+   color: #fff;
+   text-decoration: none;
+   border-radius: 4px;
+ }
+  a.btn-crear:hover {
+   background-color: #0056b3;
+ }
