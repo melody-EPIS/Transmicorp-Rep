@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Orden_trabajo
 from .forms import OrdenTrabajoForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def crear_orden_trabajo(request):
     if request.method == 'POST':
         form = OrdenTrabajoForm(request.POST)
@@ -13,10 +15,12 @@ def crear_orden_trabajo(request):
         form = OrdenTrabajoForm()
     return render(request, 'crear_orden_trabajo.html', {'form': form})
 
+@login_required
 def ver_orden_trabajo(request, pk):
     orden_trabajo = get_object_or_404(Orden_trabajo, pk=pk)
     return render(request, 'ver_orden_trabajo.html', {'orden_trabajo': orden_trabajo})
 
+@login_required
 def editar_orden_trabajo(request, pk):
     orden_trabajo = get_object_or_404(Orden_trabajo, pk=pk)
     if request.method == 'POST':
@@ -28,6 +32,7 @@ def editar_orden_trabajo(request, pk):
         form = OrdenTrabajoForm(instance=orden_trabajo)
     return render(request, 'editar_orden_trabajo.html', {'form': form, 'orden_trabajo': orden_trabajo})
 
+@login_required
 def eliminar_orden_trabajo(request, pk):
     orden_trabajo = get_object_or_404(Orden_trabajo, pk=pk)
     if request.method == 'POST':
@@ -35,6 +40,7 @@ def eliminar_orden_trabajo(request, pk):
         return redirect('lista_ordenes_trabajo')
     return render(request, 'eliminar_orden_trabajo.html', {'orden_trabajo': orden_trabajo})
 
+@login_required
 def lista_ordenes_trabajo(request):
     ordenes_trabajo = Orden_trabajo.objects.all()
     return render(request, 'lista_ordenes_trabajo.html', {'ordenes_trabajo': ordenes_trabajo})

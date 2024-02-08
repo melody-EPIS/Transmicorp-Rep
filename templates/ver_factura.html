@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <td><strong>Documento factura:</strong></td>
-                            <td>{{ factura.Documento_factura }}</td>
+                            <td><a href="{% url 'ver_pdf' factura.id %}">{{ factura.Documento_factura }}</a></td>
                         </tr>
                     </table>
                 </div>

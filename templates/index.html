@@ -70,7 +70,7 @@
                     <div class="circle"></div>
                 </div>
             </div>
-          
+
             <div class="spinner-layer spinner-yellow">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
@@ -82,7 +82,7 @@
                     <div class="circle"></div>
                 </div>
             </div>
-          
+
             <div class="spinner-layer spinner-green">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
@@ -126,27 +126,47 @@
                           <i class="ti-more"></i>
                       </a>
                   </div>
-                
+
                   <div class="navbar-container container-fluid navbar-light bg bg-success ">
-                      <ul class="nav-left bg-custom">
-                          <li>
-                              <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                          </li>
-                          <li class="header-search ">
-                              <div class="main-search morphsearch-search ">
-                                  <div class="input-group">
-                                      <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                      <input type="text" class="form-control">
-                                      <span class="input-group-addon search-btn text-dark"><i class="ti-search"></i></span> <!-- COLOR SEARCH ARRIBA  -->
-                                  </div>
-                              </div>
-                          </li>
-                          <li>
-                              <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
-                                  <i class="ti-fullscreen"></i>
-                              </a>
-                          </li>
-                      </ul>
+                    <ul class="nav-left bg-custom">
+                        <li>
+                            <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                        </li>
+                        
+                        <li>
+                            <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                <i class="ti-fullscreen"></i>
+                            </a>
+                        </li>
+                        <div class="nav-left bg-custom">
+                            <!-- Tu contenido actual -->
+
+                            <!-- Icono de carta -->
+                            <i class="ti-credit-card"></i>
+                        </div>
+                        <div class="nav-left bg-custom">
+                            <!-- Tu contenido actual -->
+
+                            <!-- Icono de carta -->
+                            <i class="ti-credit-card"></i>
+                        </div>
+
+
+                        {% if request.path != '/' %}
+                        <li class="dropdown" id="nuevas-notificaciones-dropdown">
+                            <a href="#" id="notificacion" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="ti-comments"></i> Notificaciones<span class="badge" style="color: black;">3</span>
+                        </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right" id="nuevas-notificaciones-m"></ul>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+
+
+
+
                   </div>
               </div>
           </nav>
@@ -163,27 +183,20 @@
                                       <span id="more-details">{{ user.username }}<i class="fa fa-caret-down"></i></span>
                                   </div>
                               </div>
-        
+
                               <div class="main-menu-content ">
                                   <ul>
                                       <li class="more-details">
+                                          <a href="{% url 'crear_cuenta' %}"> <i class="ti-marker-alt"></i>Registro de cuentas </a>
                                           <a href="{% url 'user_profile' %}"><i class="ti-user"></i>View Profile</a>
                                           <a href="{% url 'settings' %}"><i class="ti-settings"></i>Settings</a>
                                           <a href="{% url 'salir' %}"><i class="ti-layout-sidebar-left"></i>Logout</a>
+
                                       </li>
                                   </ul>
                               </div>
                           </div>
-                          <div class="p-15 p-b-0">
-                              <form class="form-material">
-                                  <div class="form-group form-success">
-                                      <input type="text" name="footer-email" class="form-control" required="">
-                                      <span class="form-bar text-dark"></span>
-                                      <label class="float-label text-dark"><i class="fa fa-search m-r-10"></i>Search</label>
-                                      
-                                  </div>
-                              </form>
-                          </div>
+                          
                           <div class="pcoded-navigation-label text-green-custom" data-i18n="nav.category.navigation">Layout</div>
                           <ul class="pcoded-item pcoded-left-item">
                               <li class="active">
@@ -193,7 +206,7 @@
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
-                
+
                           <div class="pcoded-navigation-label text-green-custom h1" data-i58n="nav.category.forms">Módulos</div>
                           <ul class="pcoded-item pcoded-left-item">
                               <li>
@@ -210,7 +223,7 @@
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
-                              
+
                               <li>
                                   <a href="{% url 'lista_inventario' %}">
                                       <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
@@ -218,7 +231,7 @@
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
-        
+
                               <li>
                                   <a href="{% url 'lista_clientes' %}"class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
@@ -277,7 +290,7 @@
                             </li>
 
 
-                          </ul>    
+                          </ul>
                   </nav>
                   <div class="pcoded-content ">
                       <!-- Page-header start -->
@@ -296,8 +309,13 @@
                                               <a href="index.html"> <i class="fa fa-home"></i> </a>
                                           </li>
                                           <li class="breadcrumb2-item"><a href="#!">Dashboard</a>
+                                            
+
                                           </li>
                                       </ul>
+
+
+
                                   </div>
                               </div>
                           </div>
@@ -309,20 +327,30 @@
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
-                                        <div class="row">
-                                            <!-- task, page, download counter  start -->
-                        
-                                            <!-- task, page, download counter  end -->
-    
-                                            <!--  sale analytics start -->
-                                            
+                                        <div class="row" id="aaa">
+
+
+
                                             {% block content %}
+
+                                            <ul>
+                                                <li class="dropdown" id="notificaciones-dropdown">
+                                                    <a href="#" id="notificaciones" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="ti-comments"></i> Notificaciones
+                                                        <span class="badge" style="color: black;">3</span>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" id="notificaciones-menu">
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
                                             {% endblock %}
 
                                             <!--  sale analytics end -->
-    
+
                                             <!--  project and team member start -->
-                                            
+
                                             <!--  project and team member end -->
                                         </div>
                                     </div>
@@ -336,8 +364,8 @@
             </div>
         </div>
     </div>
-  
-    
+
+
     <!-- Required Jquery -->
     <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-ui/jquery-ui.min.js' %} "></script>
@@ -368,6 +396,15 @@
     <!-- custom js -->
     <script type="text/javascript" src="{% static 'pages/dashboard/custom-dashboard.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+
+    <script type="text/javascript" src="{% static 'js/notificaciones.js' %}"></script>
+
+
+    {% if request.path != '/' %}
+    <script type="text/javascript" src="{% static 'js/notificacionesBarra.js' %}"></script>
+    {% endif %}
 </body>
 
 </html>
+

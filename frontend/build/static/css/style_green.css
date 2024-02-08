@@ -101,8 +101,8 @@
   border: none !important; /* Deshabilitar borde */
   filter: none !important; /* Deshabilitar filtros */
   transition: none !important; /* Deshabilitar transiciones */
-  
- 
+
+
 }
 
 .bg-custom3 {
@@ -122,8 +122,8 @@ transition: none !important; /* Deshabilitar transiciones */
 
 }
 .text-green-custom {
-  color: #097179 !important; 
-  
+  color: #097179 !important;
+
 }
 
 
@@ -131,7 +131,7 @@ transition: none !important; /* Deshabilitar transiciones */
 
 /* Personalizar el page-header */
 .page2-header {
-font-family: Arial, Helvetica, sans-serif; 
+font-family: Arial, Helvetica, sans-serif;
 background-color: #076269; /* Color de fondo */
 color: #fff; /* Color del texto */
 padding: 20px; /* Relleno */
@@ -218,7 +218,7 @@ font-size: 18px; /* Tamaño de fuente del menú */
 display: flex; /* Utilizar flexbox para alinear elementos */
 align-items: center; /* Centrar verticalmente los elementos */
 border: 5px solid #67a4af; /* Borde de color verde claro */
-border-right: none; 
+border-right: none;
 }
 
 .main2-menu-header img {
@@ -242,5 +242,70 @@ justify-content: center; /* Centrar horizontalmente el texto */
 
 .main2-menu-header #more-details i {
 margin-left: 5px; /* Espacio entre el nombre de usuario y el icono */
+}
+
+
+
+/* Estilos para el enlace dentro del elemento con la clase "dropdown" */
+.dropdown a {
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: #333; /* Color del texto del enlace */
+  font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos para el ícono dentro del enlace */
+.dropdown a i {
+  margin-right: 5px; /* Margen a la derecha del ícono */
+}
+
+
+
+/* Estilos para la etiqueta de notificación el icono q se muestra con un numero encima*/
+.dropdown .badge {
+  background-color: #076269;
+  color: #fff;
+  padding: 1px 2px;
+  border-radius: 10%;
+
+}
+
+/* Estilos para el contenedor de notificaciones */
+#notificaciones-menu {
+  max-width: 580px !important; /* Ancho máximo para el contenedor de notificaciones */
+  width: 450px;
+
+}
+
+   /* Estilos para el contentenedor de notificaciones */
+.notificacion-item {
+    padding: 2px;
+    margin: 1px 0;
+    border: 1px solid #1f1919;
+    background-color: rgba(7, 98, 105, 0.1)  !important;
+    white-space: normal !important; /* Permite que el texto se desplace en múltiples líneas si excede el ancho */
+    word-wrap: break-word !important;
+    text-align: left !important;
+
+
+
+}
+
+/* Estilos para las notificaciones */
+.notificacion-item.alerta {
+    background-color: #cce0ff;
+    border-color: #076269;
+    color: #000000;
+    font-size: 12px; /* Tamaño de letra */
+
+
+
+}
+
+/* Estilos agregar imange- no funciona */
+.notificacion-item::before {
+  content: url('images/warning.png') !important; /* Ruta del icono */
+  margin-right: 5px !important; /* Espacio entre el icono y el texto */
+  width: 5px !important; /* Ancho del icono */
+  height: 5px !important; /* Alto del icono */
 }
 

@@ -10,43 +10,43 @@
             <div class="form-row">
                 <div class="form-column" style="flex: 1;">
                     {{ form.Nombre.label_tag }}
-                        <input type="text" name="{{ form.Nombre.name }}" id="{{ form.Nombre.id }}" 
+                        <input type="text" name="{{ form.Nombre.name }}" id="{{ form.Nombre.id }}"
                                pattern="[A-Za-z]+" title="El nombre debe contener solo letras" required>
                     {{ form.Nombre.errors }}
                 </div>
                 <div class="form-column" style=" margin-left: 20px; flex: 1;">
                     {{ form.Apellido.label_tag }}
-                    <input type="text" name="{{ form.Apellido.name }}" id="{{ form.Apellido.id }}" 
+                    <input type="text" name="{{ form.Apellido.name }}" id="{{ form.Apellido.id }}"
                     pattern="[A-Za-z]+" title="El apellido debe contener solo letras" required>
                     {{ form.Apellido.errors }}
                 </div>
-  
+
             </div>
-            
+
             <div class="form-row">
                 <div class="form-column" style="flex: 1;">
                     {{ form.Direccion.label_tag }}
                     {{ form.Direccion }}
                     {{ form.Direccion.errors }}
                 </div>
-  
+
                 <div class="form-column" style="margin-left: 20px; flex: 1;">
                     {{ form.Correo.label_tag }}
                     {{ form.Correo }}
                     {{ form.Correo.errors }}
                 </div>
-                
+
             </div>
 
             <div class="form-row">
                 <div class="form-column" style="flex: 1;">
                     {{ form.Telefono.label_tag }}
-                        <input type="text" name="{{ form.Telefono.name }}" id="{{ form.Telefono.id }}" 
+                        <input type="text" name="{{ form.Telefono.name }}" id="{{ form.Telefono.id }}"
                                pattern="9[0-9]{8}" title="El teléfono debe contener exactamente 9 dígitos,todos números y empezar con 9" required>
 
                     {{ form.Telefono.errors }}
                   </div>
-                  
+
                   <div class="form-column" style=" margin-left: 20px; flex: 1;">
                       {{ form.Valoracion.label_tag }}
                       {{ form.Valoracion }}
@@ -61,7 +61,7 @@
                     {{ form.TipoProducto }}
                     {{ form.TipoProducto.errors }}
                 </div>
-                
+
                 <div class="form-column" style=" margin-left: 20px;">
                     {{ form.DocumentacionLegal.label_tag }}
                     {{ form.DocumentacionLegal }}
@@ -75,7 +75,7 @@
                     <button type="submit">Crear Proveedor</button>
                 </div>
             </div>
-              
+
           </form>
       </div>
   </div>

@@ -1,0 +1,76 @@
+.main-wrapper {
+  width: 80vh; /* Ajustar al ancho completo del contenedor padre */
+  height: 70vh; /* Ajustar a la altura completa del viewport del navegador */
+  max-width: 150%; /* Establecer un ancho máximo */
+  max-height: 100%; /* Establecer una altura máxima */
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #e97154;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.form-wrapper {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-wrapper button {
+  background-color: #e97154;
+  width: 100%;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-image: url('../images/icon_save.png');
+  background-size: 20px;
+  background-position: 95% 50%;
+  background-repeat: no-repeat;
+}
+
+.form-wrapper input[type="text"],
+.form-wrapper textarea,
+.form-wrapper select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.form-wrapper label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-wrapper .form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-wrapper .form-field {
+  width: calc(50% - 10px); /* Establecer el ancho de cada campo al 50% menos el espacio entre ellos */
+}
+
+.form-wrapper .form-field label {
+  margin-bottom: 6px;
+}
+
+.form-wrapper .form-field input,
+.form-wrapper .form-field textarea,
+.form-wrapper .form-field select {
+  width: 100%;
+}
+
+.form-wrapper .form-field:last-child {
+  margin-bottom: 0; /* Eliminar el margen inferior del último campo para evitar un espacio adicional */
+}
+

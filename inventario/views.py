@@ -4,6 +4,7 @@ from .models import inventario
 from .forms import inventarioForm
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.http import JsonResponse
 
 
 def crear_inventario(request):
@@ -62,5 +63,12 @@ def generar_pdf(request, pk):
     p.save()
 
     return response
+
+
+def obtener_estado_inventario(request):
+    items_bajos_stock = inventario.objects.filter(Cantidad__lt=10)
+    data = {'items_bajos_stock': list(items_bajos_stock.values('NombreItem', 'Cantidad'))}
+    return JsonResponse(data)
+
 
 

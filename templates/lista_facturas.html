@@ -5,6 +5,8 @@
 {% block content %}
 <div class="container">
   <h2>Listado de Facturas</h2>
+
+  <a class="btn-crear" href="https://api-seguridad.sunat.gob.pe/v1/clientessol/4f3b88b3-d9d6-402a-b85d-6a0bc857746a/oauth2/loginMenuSol?originalUrl=https://e-menu.sunat.gob.pe/cl-ti-itmenu/AutenticaMenuInternet.htm&state=rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAADdAAEZXhlY3B0AAZwYXJhbXN0AEsqJiomL2NsLXRpLWl0bWVudS9NZW51SW50ZXJuZXQuaHRtJmI2NGQyNmE4YjVhZjA5MTkyM2IyM2I2NDA3YTFjMWRiNDFlNzMzYTZ0AANleGVweA==">Emitir factura en la SUNAT</a>
   <div class="row">
     <div class="col">
       <label for="show-entries">Mostrar Registros:</label>
@@ -19,7 +21,7 @@
     </div>
     <div class="col">
       <input type="text" id="busqueda" placeholder="Buscar por codigo ODT..." onkeyup="buscar()" class="form-control">
- 
+
     </div>
   </div>
 </div>

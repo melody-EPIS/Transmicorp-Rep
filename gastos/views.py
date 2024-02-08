@@ -8,6 +8,14 @@ from reportlab.pdfgen import canvas
 from io import BytesIO
 from django.db.models import Sum
 
+from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from io import BytesIO
+from reportlab.lib.units import inch
+from reportlab.lib.utils import ImageReader
+import os
 def crear_gasto(request):
     if request.method == 'POST':
         form = GastosForm(request.POST, request.FILES)
@@ -58,56 +66,117 @@ def ver_informes_contables(request):
             response['Content-Disposition'] = 'attachment; filename="informe_contable_gastos.pdf"'
 
             buffer = BytesIO()
-            p = canvas.Canvas(buffer)
+            doc = SimpleDocTemplate(buffer, pagesize=letter)
+            elements = []
+            def encabezado2(canvas, doc):
+                script_dir = os.path.dirname(__file__)
+                logo_path = os.path.join(script_dir, 'logo.png')
+                logo = ImageReader(logo_path)
+                canvas.saveState()
 
+                # Dimensiones del logo
+                logo_width, logo_height = 1.5 * inch, 1.5 * inch  # Ajusta según sea necesario
+
+                # Dibuja el logo en la esquina superior izquierda
+                canvas.drawImage(logo, 0, doc.pagesize[1] - logo_height, width=logo_width, height=logo_height, preserveAspectRatio=True)
+
+                # Configuración de la fuente para el texto
+                canvas.setFont('Helvetica-Bold', 20)
+
+                # Texto a dibujar
+                text = "Transmicorp S.A.C"
+
+                # Coordenadas para el texto
+                text_x = logo_width + 100  # Ajusta según sea necesario
+                text_y = doc.pagesize[1] - 0.5 * inch  # Ajusta según sea necesario
+
+                # Dibuja el texto
+                canvas.drawString(text_x, text_y, text)
+                
+                # Agregar pie de página
+                direccion1 = "Mza. Ñ Loote 8 URB Alas del Sur"
+                direccion2 = "Arequipa-Arequipa Jose Luis Bustamente y Rivero"
+                contacto1 = "Contacto: +123456789"
+                contacto2 = "correo@ejemplo.com"
+
+                # Coordenadas para la dirección y el contacto
+                direccion_x = 20  # Ajusta según sea necesario
+                contacto_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                pie_y = 20  # Ajusta según sea necesario
+
+                # Dibuja la dirección y el contacto
+                canvas.setFont('Helvetica', 10)
+                canvas.drawString(direccion_x, pie_y, direccion1)
+                # Ajusta la coordenada Y para la segunda línea de dirección
+                pie_y -= 12  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(direccion_x, pie_y, direccion2)
+
+                # Coordenadas para los contactos
+                contacto1_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                contacto2_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                # Ajusta la coordenada Y para contacto1
+                pie_y = 20  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(contacto1_x, pie_y, contacto1)
+                # Ajusta la coordenada Y para contacto2
+                pie_y -= 12  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(contacto2_x, pie_y, contacto2)
+
+                canvas.restoreState()
+                
+                
             # Estilos y formato para gastos
-            p.setFont("Helvetica", 12)
+            styles = getSampleStyleSheet()
+            title_style = ParagraphStyle(
+                'Title',
+                parent=styles['Title'],
+                fontName='Helvetica-Bold',  # Puedes cambiar la fuente según tus preferencias
+                fontSize=14,
+                spaceAfter=12,
+            )
 
             # Título para GASTOS centrado
-            ancho_pagina, _ = p._pagesize
-            ancho_titulo = p.stringWidth("INFORMES CONTABLES GENERALES", "Helvetica", 12)
-            x_titulo = (ancho_pagina - ancho_titulo) / 2
-            p.drawString(x_titulo, 800, "INFORMES CONTABLES GENERALES")
-            
-            # Título específico para GASTOS centrado
-            ancho_titulo_gastos = p.stringWidth("GASTOS", "Helvetica", 12)
-            x_titulo_gastos = (ancho_pagina - ancho_titulo_gastos) / 2
-            p.drawString(x_titulo_gastos, 780, "GASTOS")
 
+            elements.append(Paragraph("INFORMES CONTABLES GENERALES", title_style))
+            elements.append(Paragraph("GASTOS", title_style))
 
 
             # Encabezados de la tabla de gastos
             encabezados_gastos = ['Código de Boleta', 'Tipo de Gasto', 'Área de Gasto', 'Fecha de Boleta', 'Monto Gastado']
-            ancho_columnas_gastos = [100, 100, 100, 110, 110]
 
-            # Posiciones iniciales para gastos
-            y_actual_gastos = 750
-            espaciado_entre_filas_gastos = 20
+            # Datos para la tabla de gastos
+            # Datos para la tabla de gastos
+            datos_tabla_gastos = [
+                [encabezado.upper() for encabezado in encabezados_gastos],
+                *[
+                    [
+                        getattr(dato, campo) if campo != 'Tipo_de_gasto' and campo != 'Area_de_gasto' else dato.get_Tipo_de_gasto_display() if campo == 'Tipo_de_gasto' else dato.get_Area_de_gasto_display() 
+                        for campo in ['Codigo_de_boleta', 'Tipo_de_gasto', 'Area_de_gasto', 'Fecha_boleta', 'Monto_gastado']
+                    ]
+                    for dato in datos_gastos
+                ],
+                ['', '', '', 'Total Gastos:', total_gastos],  # Fila para el total
+            ]
 
-            # Dibujar encabezados para gastos
-            for i, encabezado in enumerate(encabezados_gastos):
-                p.drawString(ancho_columnas_gastos[i] * i + 10, y_actual_gastos, encabezado)
+            # Crear la tabla
+            tabla_gastos = Table(datos_tabla_gastos)
+            tabla_gastos.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -2), colors.white),
+                ('GRID', (0, 0), (-1, -2), 1, colors.black)
+            ]))
 
-            # Dibujar datos para gastos
-            for i, dato in enumerate(datos_gastos, start=1):
-                y_actual_gastos -= espaciado_entre_filas_gastos
-                for j, campo in enumerate(['Codigo_de_boleta', 'Tipo_de_gasto', 'Area_de_gasto', 'Fecha_boleta', 'Monto_gastado']):
-                    valor = getattr(dato, campo)
-                    if campo == 'Tipo_de_gasto':
-                        valor = dato.get_Tipo_de_gasto_display()
-                    elif campo == 'Area_de_gasto':
-                        valor = dato.get_Area_de_gasto_display()
-                    else:
-                        valor = str(valor)
-                    p.drawString(ancho_columnas_gastos[j] * j + 10, y_actual_gastos, valor)
+            elements.append(tabla_gastos)
 
-                # Dibujar total para gastos al final de la tabla
-                if i == len(datos_gastos):
-                    y_actual_gastos -= espaciado_entre_filas_gastos
-                    p.drawString(ancho_columnas_gastos[4] * 4 + 10, y_actual_gastos, f"Total Gastos: {total_gastos}")
+            # Dibujar total para gastos al final de la tabla
+            #elements.append(Paragraph(f"Total Gastos: {total_gastos}", styles['Normal']))
 
-            p.showPage()
-            p.save()
+            doc.build(elements,
+                      onFirstPage=encabezado2,
+                      onLaterPages=encabezado2)
 
             pdf = buffer.getvalue()
             buffer.close()
@@ -124,46 +193,108 @@ def ver_informes_contables(request):
             response['Content-Disposition'] = 'attachment; filename="informe_contable_ingresos.pdf"'
 
             buffer = BytesIO()
-            p = canvas.Canvas(buffer)
+            doc = SimpleDocTemplate(buffer, pagesize=letter)
+            elements = []
+            def encabezado2(canvas, doc):
+                script_dir = os.path.dirname(__file__)
+                logo_path = os.path.join(script_dir, 'logo.png')
+                logo = ImageReader(logo_path)
+                canvas.saveState()
+
+                # Dimensiones del logo
+                logo_width, logo_height = 1.5 * inch, 1.5 * inch  # Ajusta según sea necesario
+
+                # Dibuja el logo en la esquina superior izquierda
+                canvas.drawImage(logo, 0, doc.pagesize[1] - logo_height, width=logo_width, height=logo_height, preserveAspectRatio=True)
+
+                # Configuración de la fuente para el texto
+                canvas.setFont('Helvetica-Bold', 20)
+
+                # Texto a dibujar
+                text = "Transmicorp S.A.C"
+
+                # Coordenadas para el texto
+                text_x = logo_width + 100  # Ajusta según sea necesario
+                text_y = doc.pagesize[1] - 0.5 * inch  # Ajusta según sea necesario
+
+                # Dibuja el texto
+                canvas.drawString(text_x, text_y, text)
+                
+                # Agregar pie de página
+                direccion1 = "Mza. Ñ Loote 8 URB Alas del Sur"
+                direccion2 = "Arequipa-Arequipa Jose Luis Bustamente y Rivero"
+                contacto1 = "Contacto: +123456789"
+                contacto2 = "correo@ejemplo.com"
+
+                # Coordenadas para la dirección y el contacto
+                direccion_x = 20  # Ajusta según sea necesario
+                contacto_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                pie_y = 20  # Ajusta según sea necesario
+
+                # Dibuja la dirección y el contacto
+                canvas.setFont('Helvetica', 10)
+                canvas.drawString(direccion_x, pie_y, direccion1)
+                # Ajusta la coordenada Y para la segunda línea de dirección
+                pie_y -= 12  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(direccion_x, pie_y, direccion2)
+
+                # Coordenadas para los contactos
+                contacto1_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                contacto2_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                # Ajusta la coordenada Y para contacto1
+                pie_y = 20  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(contacto1_x, pie_y, contacto1)
+                # Ajusta la coordenada Y para contacto2
+                pie_y -= 12  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(contacto2_x, pie_y, contacto2)
+
+                canvas.restoreState()
+
 
             # Estilos y formato para ingresos
-            p.setFont("Helvetica", 9)
+            styles = getSampleStyleSheet()
+            title_style = ParagraphStyle(
+                'Title',
+                parent=styles['Title'],
+                fontName='Helvetica-Bold',
+                fontSize=14,
+                spaceAfter=12,
+            )
 
             # Título para INGRESOS centrado
-            ancho_pagina, _ = p._pagesize
-            ancho_titulo = p.stringWidth("INFORMES CONTABLES GENERALES", "Helvetica", 12)
-            x_titulo = (ancho_pagina - ancho_titulo) / 2
-            p.drawString(x_titulo, 800, "INFORMES CONTABLES GENERALES")
-            
-            # Título específico para INGRESOS centrado
-            ancho_titulo_ingresos = p.stringWidth("INGRESOS", "Helvetica", 12)
-            x_titulo_ingresos = (ancho_pagina - ancho_titulo_ingresos) / 2
-            p.drawString(x_titulo_ingresos, 780, "INGRESOS")
+            elements.append(Paragraph("INFORMES CONTABLES GENERALES", title_style))
+            elements.append(Paragraph("INGRESOS", title_style))
 
             # Encabezados de la tabla de ingresos
             encabezados_ingresos = ['ID Cliente', 'Orden de Trabajo', 'Fecha de Emisión', 'IGV', 'Detracción', 'Importe']
-            ancho_columnas_ingresos = [80, 90, 100, 100, 90, 90]
 
-            # Posiciones iniciales para ingresos
-            y_actual_ingresos = 750
-            espaciado_entre_filas_ingresos = 20
+            # Datos para la tabla de ingresos
+            datos_tabla_ingresos = [
+                [encabezado.upper() for encabezado in encabezados_ingresos],
+                *[
+                    [str(getattr(dato, campo)) for campo in ['Id_cliente', 'Orden_de_trabajo', 'Fecha_Emision', 'IGV', 'Detraccion', 'Importe']]
+                    for dato in datos_ingresos
+                ],
+                ['', '', '', '', '', f'Total Ingresos: {total_ingresos}'],  # Fila para el total
+            ]
 
-            # Dibujar encabezados para ingresos
-            for i, encabezado in enumerate(encabezados_ingresos):
-                p.drawString(ancho_columnas_ingresos[i] * i + 10, y_actual_ingresos, encabezado)
+            # Crear la tabla
+            tabla_ingresos = Table(datos_tabla_ingresos)
+            tabla_ingresos.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -2), colors.white),
+                ('GRID', (0, 0), (-1, -2), 1, colors.black),
+            ]))
 
-            # Dibujar datos para ingresos
-            for i, dato in enumerate(datos_ingresos, start=1):
-                y_actual_ingresos -= espaciado_entre_filas_ingresos
-                for j, campo in enumerate(['Id_cliente', 'Orden_de_trabajo', 'Fecha_Emision', 'IGV', 'Detraccion', 'Importe']):
-                    p.drawString(ancho_columnas_ingresos[j] * j + 10, y_actual_ingresos, str(getattr(dato, campo)))
+            elements.append(tabla_ingresos)
 
-            # Dibujar total para ingresos
-            y_actual_ingresos -= espaciado_entre_filas_ingresos
-            p.drawString(ancho_columnas_ingresos[5] * 5 + 10, y_actual_ingresos, f"Total Ingresos: {total_ingresos}")
-
-            p.showPage()
-            p.save()
+            doc.build(elements,
+                      onFirstPage=encabezado2,
+                      onLaterPages=encabezado2)
 
             pdf = buffer.getvalue()
             buffer.close()
@@ -182,91 +313,142 @@ def ver_informes_contables(request):
             response['Content-Disposition'] = 'attachment; filename="informe_contable_total.pdf"'
 
             buffer = BytesIO()
-            p = canvas.Canvas(buffer)
+            doc = SimpleDocTemplate(buffer, pagesize=letter)
+            elements = []
+            def encabezado2(canvas, doc):
+                script_dir = os.path.dirname(__file__)
+                logo_path = os.path.join(script_dir, 'logo.png')
+                logo = ImageReader(logo_path)
+                canvas.saveState()
 
+                # Dimensiones del logo
+                logo_width, logo_height = 1.5 * inch, 1.5 * inch  # Ajusta según sea necesario
+
+                # Dibuja el logo en la esquina superior izquierda
+                canvas.drawImage(logo, 0, doc.pagesize[1] - logo_height, width=logo_width, height=logo_height, preserveAspectRatio=True)
+
+                # Configuración de la fuente para el texto
+                canvas.setFont('Helvetica-Bold', 20)
+
+                # Texto a dibujar
+                text = "Transmicorp S.A.C"
+
+                # Coordenadas para el texto
+                text_x = logo_width + 100  # Ajusta según sea necesario
+                text_y = doc.pagesize[1] - 0.5 * inch  # Ajusta según sea necesario
+
+                # Dibuja el texto
+                canvas.drawString(text_x, text_y, text)
+                
+                # Agregar pie de página
+                direccion1 = "Mza. Ñ Loote 8 URB Alas del Sur"
+                direccion2 = "Arequipa-Arequipa Jose Luis Bustamente y Rivero"
+                contacto1 = "Contacto: +123456789"
+                contacto2 = "correo@ejemplo.com"
+
+                # Coordenadas para la dirección y el contacto
+                direccion_x = 20  # Ajusta según sea necesario
+                contacto_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                pie_y = 20  # Ajusta según sea necesario
+
+                # Dibuja la dirección y el contacto
+                canvas.setFont('Helvetica', 10)
+                canvas.drawString(direccion_x, pie_y, direccion1)
+                # Ajusta la coordenada Y para la segunda línea de dirección
+                pie_y -= 12  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(direccion_x, pie_y, direccion2)
+
+                # Coordenadas para los contactos
+                contacto1_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                contacto2_x = doc.pagesize[0] - 200  # Ajusta según sea necesario
+                # Ajusta la coordenada Y para contacto1
+                pie_y = 20  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(contacto1_x, pie_y, contacto1)
+                # Ajusta la coordenada Y para contacto2
+                pie_y -= 12  # Ajusta según sea necesario para el espaciado entre líneas
+                canvas.drawString(contacto2_x, pie_y, contacto2)
+
+                canvas.restoreState()
             # Estilos y formato para total
-            p.setFont("Helvetica", 12)
+            styles = getSampleStyleSheet()
+            title_style = ParagraphStyle(
+                'Title',
+                parent=styles['Title'],
+                fontName='Helvetica-Bold',
+                fontSize=14,
+                spaceAfter=12,
+            )
 
-            # Título para total centrado
-            ancho_pagina, _ = p._pagesize
-            ancho_titulo = p.stringWidth("INFORMES CONTABLES GENERALES", "Helvetica", 12)
-            x_titulo = (ancho_pagina - ancho_titulo) / 2
-            p.drawString(x_titulo, 800, "INFORMES CONTABLES GENERALES")
-
-
+            # Título para GASTOS centrado
+            elements.append(Paragraph("INFORMES CONTABLES GENERALES", title_style))
 
             # Título específico para gastos centrado
-            ancho_titulo_gastos = p.stringWidth("Gastos", "Helvetica", 12)
-            x_titulo_gastos = (ancho_pagina - ancho_titulo_gastos) / 2
-            p.drawString(x_titulo_gastos, 780, "GASTOS")
-
-
+            elements.append(Paragraph("GASTOS", title_style))
 
             # Encabezados de la tabla de gastos
             encabezados_gastos = ['Código de Boleta', 'Tipo de Gasto', 'Área de Gasto', 'Fecha de Boleta', 'Monto Gastado']
-            ancho_columnas_gastos = [100, 100, 100, 110, 110]
 
-            # Posiciones iniciales para gastos
-            y_actual_gastos = 750
-            espaciado_entre_filas_gastos = 20
+            # Datos para la tabla de gastos
+            # Datos para la tabla de gastos
+            datos_tabla_gastos = [
+                [encabezado.upper() for encabezado in encabezados_gastos],
+                *[
+                    [
+                        getattr(dato, campo) if campo != 'Tipo_de_gasto' and campo != 'Area_de_gasto' else dato.get_Tipo_de_gasto_display() if campo == 'Tipo_de_gasto' else dato.get_Area_de_gasto_display() 
+                        for campo in ['Codigo_de_boleta', 'Tipo_de_gasto', 'Area_de_gasto', 'Fecha_boleta', 'Monto_gastado']
+                    ]
+                    for dato in datos_gastos
+                ],
+                ['', '', '', 'Total Gastos:', total_gastos],  # Fila para el total
+            ]
 
-            # Dibujar encabezados para gastos
-            for i, encabezado in enumerate(encabezados_gastos):
-                p.drawString(ancho_columnas_gastos[i] * i + 10, y_actual_gastos, encabezado)
+            # Crear la tabla
+            tabla_gastos = Table(datos_tabla_gastos)
+            tabla_gastos.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -2), colors.white),
+                ('GRID', (0, 0), (-1, -2), 1, colors.black),
+            ]))
 
-            # Dibujar datos para gastos
-            for i, dato in enumerate(datos_gastos, start=1):
-                y_actual_gastos -= espaciado_entre_filas_gastos
-                for j, campo in enumerate(['Codigo_de_boleta', 'Tipo_de_gasto', 'Area_de_gasto', 'Fecha_boleta', 'Monto_gastado']):
-                    valor = getattr(dato, campo)
-                    if campo == 'Tipo_de_gasto':
-                        valor = dato.get_Tipo_de_gasto_display()
-                    elif campo == 'Area_de_gasto':
-                        valor = dato.get_Area_de_gasto_display()
-                    else:
-                        valor = str(valor)
-                    p.drawString(ancho_columnas_gastos[j] * j + 10, y_actual_gastos, valor)
-
-                # Dibujar total para gastos al final de la tabla
-                if i == len(datos_gastos):
-                    y_actual_gastos -= espaciado_entre_filas_gastos
-                    p.drawString(ancho_columnas_gastos[4] * 4 + 10, y_actual_gastos, f"Total Gastos: {total_gastos}")
+            elements.append(tabla_gastos)
 
             # Nueva página para la tabla de ingresos
-            p.showPage()
-
-            p.setFont("Helvetica", 9)
-            # Título específico para ingresos centrado
-            ancho_titulo_ingresos = p.stringWidth("Ingresos", "Helvetica", 12)
-            x_titulo_ingresos = (ancho_pagina - ancho_titulo_ingresos) / 2
-            p.drawString(x_titulo_ingresos, 800, "INGRESOS")
+            elements.append(Paragraph("INGRESOS", title_style))
 
             # Encabezados de la tabla de ingresos
             encabezados_ingresos = ['ID Cliente', 'Orden de Trabajo', 'Fecha de Emisión', 'IGV', 'Detracción', 'Importe']
-            ancho_columnas_ingresos = [80, 90, 100, 100, 90, 90]
 
-            # Posiciones iniciales para ingresos
-            y_actual_ingresos = 750
-            espaciado_entre_filas_ingresos = 20
+            # Datos para la tabla de ingresos
+            datos_tabla_ingresos = [
+                [encabezado.upper() for encabezado in encabezados_ingresos],
+                *[
+                    [str(getattr(dato, campo)) for campo in ['Id_cliente', 'Orden_de_trabajo', 'Fecha_Emision', 'IGV', 'Detraccion', 'Importe']]
+                    for dato in datos_ingresos
+                ],
+                ['', '', '', '', '', f'Total Ingresos: {total_ingresos}'],  # Fila para el total
+            ]
 
-            # Dibujar encabezados para ingresos
-            for i, encabezado in enumerate(encabezados_ingresos):
-                p.drawString(ancho_columnas_ingresos[i] * i + 10, y_actual_ingresos, encabezado)
+            # Crear la tabla
+            tabla_ingresos = Table(datos_tabla_ingresos)
+            tabla_ingresos.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -2), colors.white),
+                ('GRID', (0, 0), (-1, -2), 1, colors.black),
+            ]))
 
-            # Dibujar datos para ingresos
-            for i, dato in enumerate(datos_ingresos, start=1):
-                y_actual_ingresos -= espaciado_entre_filas_ingresos
-                for j, campo in enumerate(['Id_cliente', 'Orden_de_trabajo', 'Fecha_Emision', 'IGV', 'Detraccion', 'Importe']):
-                    p.drawString(ancho_columnas_ingresos[j] * j + 10, y_actual_ingresos, str(getattr(dato, campo)))
+            elements.append(tabla_ingresos)
 
-                # Dibujar total para ingresos al final de la tabla
-                if i == len(datos_ingresos):
-                    y_actual_ingresos -= espaciado_entre_filas_ingresos
-                    p.drawString(ancho_columnas_ingresos[5] * 5 + 10, y_actual_ingresos, f"Total Ingresos: {total_ingresos}")
-
-            
-            p.showPage()
-            p.save()
+            doc.build(elements,
+                      onFirstPage=encabezado2,
+                      onLaterPages=encabezado2)
 
             pdf = buffer.getvalue()
             buffer.close()
@@ -275,3 +457,5 @@ def ver_informes_contables(request):
             return response
 
     return render(request, 'ver_informes_contables.html')
+
+

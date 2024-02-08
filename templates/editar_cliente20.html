@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="main-wrapper">
+    <h1>Editar Cliente </h1>
+    <div class="form-wrapper">
+        <form method="post" id="client-form">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Ruc_Clientes">RUC Cliente:</label>
+                    {{ form.Ruc_Clientes }}
+
+                </div>
+                <div class="form-column" style="margin-left: 20px; flex: 1;">
+                    <label for="id_Cliente_Nombre">Razón Social:</label>
+                    {{ form.Nombre_Empresa }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Cliente_telefono">Teléfono:</label>
+                    {{ form.Cliente_telefono }}
+                </div>
+                <div class="form-column" style="margin-left: 20px; flex: 1;">
+                    <label for="id_Cliente_email">Email:</label>
+                    {{ form.Cliente_email }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1;">
+                    <label for="direccion">Dirección:</label>
+                    {{ form.Cliente_direccion }}
+                </div>
+                <div class="form-column" style="margin-left: 20px; flex: 1;">
+                    <label for="valor">Valoracion:</label>
+                    {{ form.Valoracion }}
+                </div>
+            </div>
+            <div class="form-row" style="height: 100px;">
+                <div class="form-column" style="flex: 1;">
+                    <label for="id_Ruc_Clientes">Tipo de Mercaderia:</label>
+                    {{ form.Tipo_Mercaderia }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column" style="flex: 1; text-align: center; margin-top: 50px;">
+                    <button type="submit">Guardar Cambios</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Script de validación y manejo de eventos aquí
+</script>
+
+<!-- Enlace al archivo CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario.css' %}">
+
+{% endblock %}

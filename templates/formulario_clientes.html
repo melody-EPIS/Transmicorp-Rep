@@ -1,0 +1,212 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="main-wrapper">
+  <h1>Registrar Cliente</h1>
+  <div class="form-selection">
+      <label class="radio-label">
+        <input type="radio" name="which_form_is_it" value="ruc10" onclick="mostrarFormulario('ruc10'); actualizarRUC('10')"> RUC10
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="which_form_is_it" value="ruc20" onclick="mostrarFormulario('ruc20'); actualizarRUC('20')"> RUC20
+      </label>
+  </div>
+
+  <div id="form-ruc10" style="display: none;" class="form-wrapper">
+      <form id="form-ruc10" method="POST" action="{% url 'formulario_cliente_tipo' %}">
+          {% csrf_token %}
+          <input type="hidden" name="which_form_is_it" value="ruc10">
+          <div class="form-fields">
+              <div class="form-field-column">
+                  <label for="id_Ruc_Clientes">RUC Cliente:</label>
+                  {{ form_ruc10.Ruc_Clientes }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_telefono">Teléfono:</label>
+                  {{ form_ruc10.Cliente_telefono }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_Nombre">Nombre Cliente:</label>
+                  {{ form_ruc10.Cliente_Nombre }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_Apellido">Apellido Cliente:</label>
+                  {{ form_ruc10.Cliente_Apellido }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_email">Email:</label>
+                  {{ form_ruc10.Cliente_email }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_direccion">Dirección:</label>
+                  {{ form_ruc10.Cliente_direccion }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Valoracion">Valoración:</label>
+                  {{ form_ruc10.Valoracion }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Tipo_Mercaderia">Tipo de Mercadería:</label>
+                  {{ form_ruc10.Tipo_Mercaderia }}
+              </div>
+          </div>
+          <button type="submit" class="submit-button">Guardar Cliente RUC10</button>
+      </form>
+  </div>
+
+  <div id="form-ruc20" style="display: none;" class="form-wrapper">
+      <form id="form-ruc20" method="POST" action="{% url 'formulario_cliente_tipo' %}">
+          {% csrf_token %}
+          <input type="hidden" name="which_form_is_it" value="ruc20">
+          <div class="form-fields">
+              <div class="form-field-column">
+                  <label for="id_Ruc_Clientes">RUC Empresa:</label>
+                  {{ form_ruc20.Ruc_Clientes }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Nombre_Empresa">Nombre Empresa:</label>
+                  {{ form_ruc20.Nombre_Empresa }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_telefono">Teléfono:</label>
+                  {{ form_ruc20.Cliente_telefono }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_email">Email:</label>
+                  {{ form_ruc20.Cliente_email }}
+              </div>
+              <div class="form-field-column">
+               <label for="id_Valoracion">Valoración:</label>
+                  {{ form_ruc20.Valoracion }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Cliente_direccion">Dirección:</label>
+                  {{ form_ruc20.Cliente_direccion }}
+              </div>
+              <div class="form-field-column">
+                  <label for="id_Tipo_Mercaderia">Tipo de Mercadería:</label>
+                  {{ form_ruc20.Tipo_Mercaderia }}
+              </div>
+          </div>
+          <button type="submit" class="submit-button">Guardar Cliente RUC20</button>
+      </form>
+  </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario_tipo.css' %}">
+
+<script>
+function mostrarFormulario(tipoFormulario) {
+    var formRUC10 = document.getElementById("form-ruc10");
+    var formRUC20 = document.getElementById("form-ruc20");
+
+    if (tipoFormulario === "ruc10") {
+        formRUC10.style.display = "block";
+        formRUC20.style.display = "none";
+    } else if (tipoFormulario === "ruc20") {
+        formRUC10.style.display = "none";
+        formRUC20.style.display = "block";
+    }
+}
+
+</script>
+<script>
+    function actualizarRUC(prefix) {
+        var rucInput = document.getElementById("id_Ruc_Clientes");
+        if (rucInput.value === "") {
+            rucInput.value = prefix;  // Establece el valor del campo de RUC solo si está vacío
+        }
+        rucInput.addEventListener("input", function () {
+            if (!/^\d*$/.test(rucInput.value)) {
+                // Si el valor no es solo números, elimina los caracteres no numéricos
+                rucInput.value = rucInput.value.replace(/[^\d]/g, "");
+            }
+            if (!/^10\d*$/.test(rucInput.value) && !/^20\d*$/.test(rucInput.value)) {
+                // Si el valor no comienza con "10" o "20", restáurelo al prefijo anterior
+                rucInput.value = prefix;
+            }
+        });
+    }
+</script>
+    
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    
+    // Función de validación de formularios
+    const validarFormulario = (form) => {
+        const rucInput = form.querySelector("#id_Ruc_Clientes");
+        const telefonoInput = form.querySelector("#id_Cliente_telefono");
+        const nombreInput = form.querySelector("#id_Cliente_Nombre");
+        const apellidoInput = form.querySelector("#id_Cliente_Apellido");
+        const emailInput = form.querySelector("#id_Cliente_email");
+
+        // Validar RUC
+        rucInput.addEventListener("input", function () {
+            const tipoRUC = form.querySelector("#id_Tipo_Ruc").value;
+            if (tipoRUC === "RUC10") {
+                rucInput.setCustomValidity("El RUC debe empezar con 10 y tener 11 dígitos numéricos.");
+                if (!rucInput.checkValidity()) {
+                    rucInput.reportValidity();
+                }
+            } else if (tipoRUC === "RUC20") {
+                rucInput.setCustomValidity("El RUC debe empezar con 20 y tener 11 dígitos numéricos.");
+                if (!rucInput.checkValidity()) {
+                    rucInput.reportValidity();
+                }
+            }
+        });
+
+        // Validar Teléfono
+        telefonoInput.addEventListener("input", function () {
+            const telefonoValue = telefonoInput.value.trim();
+            if (/^9\d{8}$/.test(telefonoValue)) {
+                telefonoInput.setCustomValidity(""); // Teléfono válido
+            } else {
+                telefonoInput.setCustomValidity("El teléfono debe comenzar con 9 y contener exactamente 9 dígitos numéricos.");
+             }
+        });
+
+
+        // Validar Nombre y Apellido
+        nombreInput.addEventListener("input", function () {
+            const nombreValue = nombreInput.value.trim();
+            if (/^[A-Za-záéíóúÁÉÍÓÚ\s]+$/.test(nombreValue)) {
+                nombreInput.setCustomValidity(""); // Nombre válido
+            } else {
+                nombreInput.setCustomValidity("Ingrese solo letras y espacios en el nombre.");
+            }
+        });
+
+        apellidoInput.addEventListener("input", function () {
+            const apellidoValue = apellidoInput.value.trim();
+            if (/^[A-Za-záéíóúÁÉÍÓÚ\s]+$/.test(apellidoValue)) {
+                apellidoInput.setCustomValidity(""); // Apellido válido
+            } else {
+                apellidoInput.setCustomValidity("Ingrese solo letras y espacios en el apellido.");
+            }
+        });
+
+        // Validar Email
+        emailInput.addEventListener("input", function () {
+            const emailValue = emailInput.value.trim();
+            if (/^[\w\.-]+@[\w\.-]+\.\w+$/.test(emailValue)) {
+                emailInput.setCustomValidity(""); // Correo electrónico válido
+            } else {
+                emailInput.setCustomValidity("Ingrese un correo electrónico válido.");
+            }
+        });
+
+    };
+
+    // Llamar a la función de validación para ambos formularios
+    const formRUC10 = document.getElementById("form-ruc10");
+    const formRUC20 = document.getElementById("form-ruc20");
+    validarFormulario(formRUC10);
+    validarFormulario(formRUC20);
+});
+</script>
+
+{% endblock %}
+

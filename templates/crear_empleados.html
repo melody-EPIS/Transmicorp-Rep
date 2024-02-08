@@ -51,7 +51,7 @@
             </div>
             <div class="form-field">
                 <label for="id_observaciones">Observaciones:</label>
-                <textarea name="{{ form.Observaciones.name }}" id="{{ form.Observaciones.id_for_label }}" rows="4" cols="50">{{ form.Observaciones.value }}</textarea>
+                <textarea name="{{ form.Observaciones.name }}" id="{{ form.Observaciones.id_for_label }}" rows="4" cols="50"></textarea>
                 
             </div>
             <div style="text-align: center;">
@@ -68,6 +68,10 @@
         const correoInput = document.querySelector("#id_Correo");
         const nombreInput = document.querySelector("#id_Nombre");
         const apellidoInput = document.querySelector("#id_Apellido");
+
+        const regexNombre = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
+        const regexApellido = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
+        const regexObservaciones = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
 
         dniInput.addEventListener("input", function () {
             const dniValue = dniInput.value.trim();
@@ -98,7 +102,7 @@
 
         nombreInput.addEventListener("input", function () {
             const nombreValue = nombreInput.value.trim();
-            if (!/^[A-Za-z\s]+$/.test(nombreValue)) {
+            if (!regexNombre.test(nombreValue)) {
                 nombreInput.setCustomValidity("Ingrese solo letras y espacios en el nombre.");
             } else {
                 nombreInput.setCustomValidity("");
@@ -107,7 +111,7 @@
 
         apellidoInput.addEventListener("input", function () {
             const apellidoValue = apellidoInput.value.trim();
-            if (!/^[A-Za-z\s]+$/.test(apellidoValue)) {
+            if (!regexApellido.test(apellidoValue)) {
                 apellidoInput.setCustomValidity("Ingrese solo letras y espacios en el apellido.");
             } else {
                 apellidoInput.setCustomValidity("");

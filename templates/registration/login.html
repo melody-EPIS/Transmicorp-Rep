@@ -16,6 +16,11 @@
 			<img class="logo" src="{% static 'images/logo_.png' %}">
 		</div>
 		<div class="login-content">
+			{% if form.errors %}
+			<div class="alert alert-danger show" role="alert">
+				Usuario o contraseña incorrectos.
+			</div>
+			{% endif %}
 			<form method="post">
                 {% csrf_token %}
 				<h2 class="title">Bienvenido</h2>
@@ -25,7 +30,6 @@
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-                    
                     {{ form.username }}
            		   </div>
            		</div>
@@ -34,22 +38,15 @@
            		    	<i class="fas fa-lock"></i>
            		   </div>
            		   <div class="div">
-                    
                     {{ form.password }}
             	   </div>
-                   
             	</div>
 				
-            	<a href="#">¿Olvidaste tu contraseña?</a> </br>
-				<a href="{% url 'crear_cuenta' %}">¿No tienes cuenta? Registrate</a>
+				
             	<button type="submit" class="btn btn-primary px-4 float-end mt-4">login</button>
             </form>
         </div>
     </div>
     <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
-
-
-
-     
 </body>
 </html>

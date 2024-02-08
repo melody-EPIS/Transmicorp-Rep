@@ -70,6 +70,58 @@ b, strong {
 .media-left {
   padding-right: 20px; }
 
+
+
+/* Estilos CSS actualizados para un tamaño más compacto */
+
+#notificaciones-menu {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+
+.notificacion-item {
+  padding: 8px; /* Ajusta el padding según tus preferencias */
+  margin: 3px 0; /* Ajusta el margin según tus preferencias */
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.notificacion-items {
+  padding: 2px; 
+  margin: 2px 0; 
+  border-radius: 2px;
+  color: #000000;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#nuevas-notificaciones-m {
+  list-style: none;
+  padding: 0 0;
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+
+
+
+
+
+.alerta {
+  background-color: #ffffff;
+}
+
+
+
+
 /**====== Custom css end ======**/
 /**  =====================
       Main-body css start
@@ -16459,4 +16511,14 @@ body.dark {
 .fixed-button.active {
   bottom: 50px;
   opacity: 1;
+}
+
+#notificaciones-dropdown a {
+  color: transparent;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#notificaciones-dropdown .badge {
+  visibility: hidden;
 }

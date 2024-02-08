@@ -2,61 +2,51 @@
 {% load static %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/orden_trabajo_formulario.css' %}">
+    <div class="main-wrapper">
+        <h1>Crear inventario</h1>
+        <div class="form-wrapper">
 
-<div class="main-wrapper">
-    <h1>Crear inventario</h1>
-    <div class="form-wrapper">
-        <form method="post" id="example-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                <div style="width: calc(50% - 10px); margin-bottom: 20px; box-sizing: border-box;">
-                    <div class="form-field">
-                        <label for="id_nombre">Nombre Item:</label>
-                        {{ form.NombreItem }}
-                    </div>
-                    <div class="form-field">
-                        <label for="id_fecha">FechaIngreso:</label>
-                        {{ form.FechaIngreso }}
-                    </div>
-                    <div class="form-field">
-                        <label for="id_cantidad">Cantidad:</label>
-                        {{ form.Cantidad }}
-                       
-                    </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group col-50">
+                    <label for="{{ form.NombreItem.id_for_label }}">Nombre del item:</label>
+                    {{ form.NombreItem }}
                 </div>
-                <div style="width: calc(50% - 10px); margin-bottom: 20px; box-sizing: border-box;">
-                    <div class="form-field">
-                        <label for="id_registro">Número de Registro:</label>
-                        {{ form.NumeroRegistro }}
-                    </div>
-                    <div class="form-field">
-                        <label for="id_telefono">TiempoVida:</label>
-                        {{ form.TiempoVida }}
-                       
-                    </div>
-                    <div class="form-field">
-                        <label for="id_rendimiento">Ambiente:</label>
-                        {{ form.Ambiente }}
-                    </div>
-                    <div class="form-field">
-                        <label for="id_estado_licencia">Estado de Uilidad:</label>
-                        {{ form.Estado }}
-                    </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.NumeroRegistro.id_for_label }}">Numero de registro:</label>
+                    {{ form.NumeroRegistro }}
                 </div>
-            </div>
-            <div class="form-field">
-                <label for="id_Descripcion">Descripción:</label>
-                <textarea name="{{ form.Descripcion.name }}" id="{{ form.Descripcion.id_for_label }}" rows="4" cols="50">{{ form.Descripcion.value }}</textarea>
-                
-            </div>
-            <div style="text-align: center;">
-                <button type="submit">Crear Item </button>
-            </div>
-            
-        </form>
+                <div class="form-group col-50">
+                    <label for="{{ form.FechaIngreso.id_for_label }}">Fecha de ingreso:</label>
+                    {{ form.FechaIngreso }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Cantidad.id_for_label }}">Cantidad:</label>
+                    {{ form.Cantidad }}
+                </div>
+
+                <div class="form-group col-50">
+                    <label for="{{ form.TiempoVida.id_for_label }}">Vida util(dias):</label>
+                    {{ form.TiempoVida }}
+                </div>
+                <div class="form-group col-50">
+                    <label for="{{ form.Ambiente.id_for_label }}">Ambiente:</label>
+                    {{ form.Ambiente }}
+                </div>
+                <div class="form-group col-70">
+                    <label for="{{ form.Estado.id_for_label }}">Estado:</label>
+                    {{ form.Estado }}
+                </div>
+                <div class="form-group col-100">
+                    <label for="{{ form.Descripcion.id_for_label }}">Descripcion:</label>
+                    {{ form.Descripcion }}
+                </div>
+                <div class="center-button col-100">
+                    <button type="submit">Crear Item </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<!-- Enlace al archivo CSS -->
-<link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario.css' %}">
 
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/green_ver.css' %}">
     <div class="page-container">
-       
+
         <div class="view-order">
             <h2>Detalles del Gasto</h2>
             <div class="order-details">
@@ -15,11 +15,11 @@
                     </tr>
                     <tr>
                         <td><strong>Tipo de Gasto:</strong></td>
-                        <td>{{ gasto.Tipo_de_gasto }}</td>
+                        <td>{{ gasto.get_Tipo_de_gasto_display }}</td>
                     </tr>
                     <tr>
                         <td><strong>Area de Gasto:</strong></td>
-                        <td>{{ gasto.Area_de_gasto }}</td>
+                        <td>{{ gasto.get_Area_de_gasto_display }}</td>
                     </tr>
                     <tr>
                         <td><strong>Descripción:</strong></td>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td><strong>Monto Gastado:</strong></td>
-                        <td>{{ gasto.Monto_gastado }}</td>
+                        <td>S/{{ gasto.Monto_gastado }} Nuevos Soles</td>
                     </tr>
                     <tr>
                         <td><strong>Fecha Boleta:</strong></td>
@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <td><strong>Documento Boleta:</strong></td>
-                        <td>{{ gasto.Documento_boleta }}</td>
+                        <td><a href="{{ gasto.Documento_boleta.url }}" target="_blank">{{ gasto.Documento_boleta.name }}</a></td>
                     </tr>
                     <!-- Mostrar otros campos del modelo aquí -->
                 </table>
@@ -48,5 +48,5 @@
           <a class="back-button" href="{% url 'lista_gasto' %}">Volver a la Lista</a>
      </div>
     </div>
-    
+
 {% endblock %}

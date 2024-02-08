@@ -3,37 +3,45 @@
 {% load static %}
 
 {% block content %}
-  
+
   <div class="main-wrapper">
-      <h1>REGISTRAR FACTURA</h1>
+      <h1>Registrar Factura</h1>
       <div class="form-wrapper">
-          <!--<form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit">Crear Factura</button>
-          </form>-->
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ form.Orden_de_trabajo.label_tag }}
-                        {{ form.Orden_de_trabajo }}
-                        {{ form.Id_cliente.label_tag }}
-                        {{ form.Id_cliente }}
-                        {{ form.Pago_de_detraccion.label_tag }}
-                        {{ form.Pago_de_detraccion }}                        
-                    </div>
-                    <div class="col-md-6">
-                        {{ form.Fecha_Emision.label_tag }}
-                        {{ form.Fecha_Emision }}
-                        {{ form.Importe.label_tag }}
-                        {{ form.Importe }}
-                        {{ form.Documento_factura.label_tag }}
-                        {{ form.Documento_factura }}
-                    </div>
-                </div>
+
+            <div class="form-group col-50">
+                <label for="{{ form.Orden_de_trabajo.id_for_label }}">Orden de trabajo:</label>
+                {{ form.Orden_de_trabajo }}
             </div>
+
+            <div class="form-group col-50">
+                <label for="{{ form.Id_cliente.id_for_label }}">RUC del cliente:</label>
+                {{ form.Id_cliente }}
+            </div>
+
+            <div class="form-group col-50">
+                <label for="{{ form.Fecha_Emision.id_for_label }}">Fecha de emision:</label>
+                {{ form.Fecha_Emision }}
+            </div>
+
+            <div class="form-group col-50">
+                <label for="{{ form.Importe.id_for_label }}">Importe:</label>
+                {{ form.Importe }}
+            </div>
+
+            <div class="form-group col-50">
+                <label for="{{ form.Pago_de_detraccion.id_for_label }}">Pago de detraccion:</label>
+                {{ form.Pago_de_detraccion }}
+            </div>
+
+            <div class="form-group col-100">
+                <label for="{{ form.Documento_factura.id_for_label }}">Documento de la factura:</label>
+                {{ form.Documento_factura }}
+            </div>
+
+
+
             <div class="form-column" style="flex: 1; text-align: center; margin-top: 50px;">
                 <button type="submit">Crear factura</button>
             </div>
@@ -42,6 +50,6 @@
   </div>
 
    <!-- Enlace al archivo CSS -->
-   <link rel="stylesheet" type="text/css" href="{% static 'css/green_formulario.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/orden_trabajo_formulario.css' %}">
 
 {% endblock %}

@@ -21,7 +21,7 @@
     </div>
     <div class="col">
       <input type="text" id="busqueda" placeholder="Buscar por código de Boleta..." onkeyup="buscar()" class="form-control">
- 
+
     </div>
   </div>
 </div>
@@ -44,10 +44,10 @@
      {% for x in gasto %}
        <tr>
        	 <td>{{ x.Codigo_de_boleta}}</td>
-         <td>{{ x.Tipo_de_gasto }}</td>
-         <td>{{ x.Area_de_gasto }}</td>
+         <td>{{ x.get_Tipo_de_gasto_display }}</td>
+         <td>{{ x.get_Area_de_gasto_display }}</td>
          <td>{{ x.Descripcion }}</td>
-         <td>{{ x.Monto_gastado }}</td>
+         <td>S/{{ x.Monto_gastado }} Soles</td>
          <td>{{ x.Fecha_boleta }}</td>
          <td>
            <a class="btn btn-primary" href="{% url 'ver_gasto' x.pk %}">Ver detalles</a>

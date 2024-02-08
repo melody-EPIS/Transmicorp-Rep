@@ -223,3 +223,26 @@ a:hover{
 		justify-content: center;
 	}
 }
+
+
+.alert {
+    position: fixed;
+    bottom: 1rem; /* Ajusta la posición vertical según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    display: none; /* Para ocultar la alerta inicialmente */
+}
+
+.alert-danger {
+    color: #ff0000;
+    background-color: transparent;
+    border-color: none;
+}
+.alert.show {
+    display: block;
+}
+

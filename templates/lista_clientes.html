@@ -25,48 +25,62 @@
 </div>
 
 
+<table class="table" id="tabla-cliente">
+  <thead>
+    <tr>
+      <th>Tipo Ruc</th>
+      <th>Ruc Cliente</th>
+      <th>Nombre completo / Razón Social </th>
+      <th>Valoración</th>
+      <th>Tipo de Mercaderia</th>
+      <th colspan="3" style="text-align: center;">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cliente_ruc10 in cliente_ruc10_list %}
+      <tr>
+        <td>RUC10</td>
+        <td>{{ cliente_ruc10.Ruc_Clientes }}</td>
+        <td>{{ cliente_ruc10.Cliente_Nombre }} {{ cliente_ruc10.Cliente_Apellido }}</td>
+        <td>{{ cliente_ruc10.Valoracion }}</td>
+        <td>{{ cliente_ruc10.Tipo_Mercaderia }}</td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'detalle_cliente' cliente_ruc10.pk %}">Ver detalles</a>
+        </td>
+        <td>
+          <a class="btn btn-warning" href="{% url 'editar_cliente_ruc_10' cliente_ruc10.pk %}">Editar</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" href="{% url 'eliminar_clientes' cliente_ruc10.pk %}">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+    {% for cliente_ruc20 in cliente_ruc20_list %}
+      <tr>
+        <td>RUC20</td>
+        <td>{{ cliente_ruc20.Ruc_Clientes }}</td>
+        <td>{{ cliente_ruc20.Nombre_Empresa }}</td>
+        <td>{{ cliente_ruc20.Valoracion }}</td>
+        <td>{{ cliente_ruc20.Tipo_Mercaderia }}</td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'detalle_cliente_20' cliente_ruc20.pk %}">Ver detalles</a>
+        </td>
+        <td>
+          <a class="btn btn-warning" href="{% url 'editar_cliente_ruc_20' cliente_ruc20.pk %}">Editar</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" href="{% url 'eliminar_clientes' cliente_ruc20.pk %}">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-
-
-
- <table class="table" id="tabla-cliente">
-   <thead>
-     <tr>
-       <th>Tipo Ruc</th>
-       <th>Ruc Cliente</th>
-       <th>Nombre</th>
-       <th>Valoración</th>
-       <th>Tipo de Mercaderia</th>
-       <th colspan="3" style="text-align: center;">Acciones</th>
-     </tr>
-   </thead>
-   <tbody>
-     {% for client in cliente %}
-       <tr>
-         <td>{{ client.Tipo_Ruc }}</td>
-         <td>{{ client.Ruc_Clientes }}</td>
-         <td>{{ client.Cliente_Nombre }}</td>
-         <td>{{ client.Valoracion }}</td>
-         <td>{{ client.Tipo_Mercaderia }}</td>
-
-         <td>
-           <a class="btn btn-primary" href="{% url 'ver_clientes' client.pk %}">Ver detalles</a>
-         </td>
-         <td>
-           <a class="btn btn-warning" href="{% url 'editar_clientes' client.pk %}">Editar</a>
-         </td>
-         <td>
-           <a class="btn btn-danger" href="{% url 'eliminar_clientes' client.pk %}">Eliminar</a>
-         </td>
-       </tr>
-     {% endfor %}
-   </tbody>
- </table>
 
  <!-- Botón para crear un nuevo cliente -->
 
 
-<a class="btn-crear" href="{% url 'crear_clientes' %}">Crear Nuevo Cliente</a>
+<a class="btn-crear" href="{% url 'formulario_cliente_tipo' %}">Crear Nuevo Cliente</a>
 
 <script>
   function buscar() {

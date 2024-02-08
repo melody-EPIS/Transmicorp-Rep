@@ -27,7 +27,7 @@ urlpatterns = [
     path('salir/', salir, name = "salir"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('orden_de_trabajo/', include('orden_de_trabajo.urls')),
-    path('facturas/', include('facturas.urls')),  
+    path('facturas/', include('facturas.urls')),
     path('inventario/', include('inventario.urls')),
     path('clientes/', include('clientes.urls')),
     path('unidades/', include('unidades.urls')),
@@ -41,4 +41,3 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    

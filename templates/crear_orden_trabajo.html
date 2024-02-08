@@ -6,14 +6,14 @@
     <div class="main-wrapper">
         <h1>Orden de Trabajo</h1>
         <div class="form-wrapper">
-           
+
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group col-50">
                     <label for="{{ form.Cliente.id_for_label }}">RUC Cliente:</label>
                     {{ form.Cliente }}
                 </div>
-                  
+
                 <div class="form-group col-50">
                     <label for="{{ form.Id_Conductor.id_for_label }}">Nombre Conductor:</label>
                     {{ form.Id_Conductor }}
@@ -35,11 +35,11 @@
                     {{ form.Id_Vehiculo }}
 
                 </div>
-        
+
                 <div class="form-group col-50">
                     <label for="{{ form.Peso.id_for_label }}">Peso(Toneladas):</label>
                     {{ form.Peso }}
-               
+
                 </div>
                 <div class="form-group col-50">
                     <label for="{{ form.Fecha_Emision.id_for_label }}">Fecha de Emisión:</label>
@@ -55,17 +55,34 @@
                         {{ form.Estado }}
                         <span> Marcar si la OT ha sido aceptada</span>
                     </div>
-                    
+
                 </div>
-                <div class="form-group col-50">
-                    <label for="{{ form.Tipo_orden_de_trabajo.id_for_label }}">Tipo de Orden de Trabajo:</label>
-                    <div class="checkbox-group-tipo col-20">{{ form.Tipo_orden_de_trabajo }}</div>
-                    
+
+                    <div class="form-column" style="flex: 1">
+                        <label for="{{ form.Tipo_orden_de_trabajo.id_for_label }}">Tipo de Orden de Trabajo:</label>
+                        <div class="checkbox-group-tipo col-20">{{ form.Tipo_orden_de_trabajo }}</div>
+
+
                 </div>
+
+                <style>
+                    .espacio-horizontal {
+
+                        margin-top: 40px;
+                    }
+                </style>
+
+                <div class="espacio-horizontal">
+
+                </div>
+
                 <div class="form-group col-100">
                     <label for="{{ form.Descripcion.id_for_label }}">Descripción:</label>
                     {{ form.Descripcion }}
                 </div>
+
+
+
                 <div class="center-button col-100">
                     <button type="submit">Crear Orden de Trabajo</button>
                 </div>
